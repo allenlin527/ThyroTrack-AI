@@ -1,0 +1,44 @@
+gantt
+    title 甲狀腺消融治療智慧追蹤平台 - 專案時程
+    dateFormat  YYYY-MM-DD
+    excludes    weekends
+    
+    section 專案啟動
+    專案啟動會議           :a1, 2025-04-01, 5d
+    需求確認與技術規劃     :a2, after a1, 15d
+    三方合作協議簽署       :a3, after a1, 10d
+    IRB計畫送審            :a4, after a2, 20d
+    
+    section 系統開發
+    前端APP初版開發        :b1, after a2, 30d
+    後端API建置            :b2, after a2, 30d
+    數據庫與FHIR標準實施   :b3, after b2, 25d
+    AI預測模型初版開發     :b4, 2025-05-01, 60d
+    LLM聊天助理開發        :b5, 2025-05-15, 45d
+    系統整合測試           :b6, after b3 b4 b5, 20d
+    
+    section 臨床試驗
+    IRB審核通過            :c1, 2025-06-15, 1d
+    臨床人員培訓           :c2, after c1, 10d
+    患者招募開始           :c3, after c2, 10d
+    第一階段數據收集       :c4, after c3, 90d
+    中期數據分析與模型優化 :c5, after b6 c4, 20d
+    第二階段數據收集       :c6, after c5, 60d
+    
+    section 教育培訓
+    學生培訓課程開發       :d1, 2025-06-01, 30d
+    第一批學生培訓         :d2, after d1, 15d
+    學生實習開始           :d3, after d2, 120d
+    教學成果評估           :d4, after d3, 15d
+    
+    section 商業化準備
+    市場分析與商業模式     :e1, 2025-08-01, 30d
+    自費項目評估           :e2, after e1, 20d
+    國際展會準備           :e3, 2025-10-01, 45d
+    參加MEDICA展會         :e4, 2025-11-15, 5d
+    
+    section 專案結案
+    臨床效益分析           :f1, after c6, 20d
+    結案報告撰寫           :f2, after f1, 15d
+    成果發表會             :f3, after f2, 1d
+    下一階段規劃           :f4, after f3, 10d

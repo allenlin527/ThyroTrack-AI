@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>警示管理 - 甲狀腺消融治療智慧追蹤平台</title>
+    <style>
+        /* 基本樣式設定 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 250px;
+        }
+
+        /* Header styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 250px;
+            z-index: 100;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+
+        /* Alert management specific styles */
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            margin-top: 70px;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            background-color: #fff;
+            padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    
+    .search-input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .filter-select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .alert-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+    
+    .alert-section {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .alert-item {
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    
+    .alert-high {
+      border-left: 4px solid #d32f2f;
+      background-color: #ffebee;
+    }
+    
+    .alert-medium {
+      border-left: 4px solid #ff8f00;
+      background-color: #fff8e1;
+    }
+    
+    .alert-low {
+      border-left: 4px solid #388e3c;
+      background-color: #e8f5e9;
+    }
+    
+    .btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn-primary {
+      background-color: #4285F4;
+      color: white;
+    }
+    
+    .btn-secondary {
+      background-color: #f5f5f5;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+    
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    
+    .pagination button {
+      margin: 0 5px;
+    }
+    
+    .stat-card {
+      padding: 15px;
+      border-radius: 8px;
+      background-color: #f5f5f5;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    
+    .alert-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    
+    .alert-high-badge {
+      background-color: #d32f2f;
+      color: white;
+    }
+    
+    .alert-medium-badge {
+      background-color: #ff8f00;
+      color: white;
+    }
+    
+    .alert-low-badge {
+      background-color: #388e3c;
+      color: white;
+    }
+  style>
+</head>
+
+<body>
+    <!-- 使用共用頭部組件 -->
+    <script>
+        document.body.innerHTML += document.getElementById('header-component').innerHTML;
+        document.body.innerHTML += document.getElementById('sidebar-component').innerHTML;
+    </script>
+
+    <div class="container">
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <div class="alert-header">
+                <h1>警示管理</h1>
+                <div>
+                    <button class="btn btn-primary">設定警示規則</button>
+                    <button class="btn btn-secondary">匯出警示報告</button>
+                </div>
+            </div>
+
+            <!-- 搜索與過濾區 -->
+            <div class="filter-bar">
+                <input type="text" class="search-input" placeholder="搜尋患者姓名、ID或警示關鍵字...">
+                <select class="filter-select">
+                    <option>所有警示等級</option>
+                    <option>高風險</option>
+                    <option>中風險</option>
+                    <option>低風險</option>
+                </select>
+                <select class="filter-select">
+                    <option>所有警示類型</option>
+                    <option>疼痛異常</option>
+                    <option>吞嚥困難</option>
+                    <option>頸部腫脹</option>
+                    <option>藥物相關</option>
+                </select>
+                <select class="filter-select">
+                    <option>所有處理狀態</option>
+                    <option>待處理</option>
+                    <option>處理中</option>
+                    <option>已處理</option>
+                    <option>已忽略</option>
+                </select>
+                <button class="btn btn-primary">搜尋</button>
+            </div>
+
+            <!-- 警示標籤分類 -->
+            <div style="margin-bottom: 20px;">
+                <button class="btn btn-primary">所有警示 (24)</button>
+                <button class="btn btn-secondary">待處理 (14)</button>
+                <button class="btn btn-secondary">今日新增 (7)</button>
+                <button class="btn btn-secondary">我的待辦 (5)</button>
+                <button class="btn btn-secondary">已處理 (10)</button>
+            </div>
+
+            <div class="alert-grid">
+                <!-- 左側警示列表 -->
+                <div>
+                    <!-- 高風險警示 -->
+                    <section class="alert-section">
+                        <div class="section-header">
+                            <h2>高風險警示</h2>
+                            <span class="alert-badge alert-high-badge">5 項</span>
+                        </div>
+
+                        <!-- 警示項目 -->
+                        <div class="alert-item alert-high">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <div style="display: flex; gap: 10px; align-items: center;">
+                                    <div style="width: 32px; height: 32px; background-color: #ddd; border-radius: 50%;">
+                                    </div>
+                                    <div>
+                                        <h3 style="margin: 0;">陳小明 (P23456)</h3>
+                                        <span style="font-size: 12px;">術後第2天 | 2025/03/21 09:15</span>
+                                    </div>
+                                </div>
+                                <span class="alert-badge alert-high-badge">待處理</span>
+                            </div>
+
+                            <p><strong>警示原因：</strong>疼痛指數急劇上升，從5至8，超出預期範圍。</p>
+                            <p><strong>系統建議：</strong>1. 評估疼痛部位與性質；2. 檢查血腫或感染跡象；3. 調整止痛藥物</p>
+
+                            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                <button class="btn btn-primary">立即處理</button>
+                                <button class="btn btn-secondary">指派給</button>
+                                <button class="btn btn-secondary">標記已閱</button>
+                            </div>
+                        </div>
+
+                        <div class="alert-item alert-high">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <div style="display: flex; gap: 10px; align-items: center;">
+                                    <div style="width: 32px; height: 32px; background-color: #ddd; border-radius: 50%;">
+                                    </div>
+                                    <div>
+                                        <h3 style="margin: 0;">黃大明 (P56789)</h3>
+                                        <span style="font-size: 12px;">術後第1天 | 2025/03/21 08:45</span>
+                                    </div>
+                                </div>
+                                <span class="alert-badge alert-high-badge">待處理</span>
+                            </div>
+
+                            <p><strong>警示原因：</strong>術後頸部腫脹顯著，腫脹程度8/10，呼吸略顯困難。</p>
+                            <p><strong>系統建議：</strong>1. 評估呼吸道狀況；2. 考慮安排緊急回診；3. 警惕可能的出血並做好準備</p>
+
+                            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                <button class="btn btn-primary">立即處理</button>
+                                <button class="btn btn-secondary">指派給</button>
+                                <button class="btn btn-secondary">標記已閱</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 中風險警示 -->
+                    <section class="alert-section">
+                        <div class="section-header">
+                            <h2>中風險警示</h2>
+                            <span class="alert-badge alert-medium-badge">7 項</span>
+                        </div>
+
+                        <!-- 警示項目 -->
+                        <div class="alert-item alert-medium">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <div style="display: flex; gap: 10px; align-items: center;">
+                                    <div style="width: 32px; height: 32px; background-color: #ddd; border-radius: 50%;">
+                                    </div>
+                                    <div>
+                                        <h3 style="margin: 0;">林大華 (P34567)</h3>
+                                        <span style="font-size: 12px;">術後第11天 | 2025/03/21 10:22</span>
+                                    </div>
+                                </div>
+                                <span class="alert-badge alert-medium-badge">處理中</span>
+                            </div>
+
+                            <p><strong>警示原因：</strong>吞嚥困難持續3天未改善，當前評分6，高於預期。</p>
+                            <p><strong>系統建議：</strong>1. 安排喉部檢查；2. 調整飲食建議；3. 評估是否有神經壓迫</p>
+
+                            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                <button class="btn btn-primary">繼續處理</button>
+                                <button class="btn btn-secondary">更新進度</button>
+                                <button class="btn btn-secondary">標記完成</button>
+                            </div>
+                        </div>
+
+                        <div class="alert-item alert-medium">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <div style="display: flex; gap: 10px; align-items: center;">
+                                    <div style="width: 32px; height: 32px; background-color: #ddd; border-radius: 50%;">
+                                    </div>
+                                    <div>
+                                        <h3 style="margin: 0;">李小芬 (P67890)</h3>
+                                        <span style="font-size: 12px;">術後第5天 | 2025/03/21 07:30</span>
+                                    </div>
+                                </div>
+                                <span class="alert-badge alert-medium-badge">待處理</span>
+                            </div>
+
+                            <p><strong>警示原因：</strong>患者報告服藥後出現皮疹與搔癢，疑似藥物過敏反應。</p>
+                            <p><strong>系統建議：</strong>1. 評估過敏嚴重程度；2. 考慮更換止痛藥物；3. 提供抗過敏建議</p>
+
+                            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                <button class="btn btn-primary">立即處理</button>
+                                <button class="btn btn-secondary">指派給</button>
+                                <button class="btn btn-secondary">標記已閱</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 低風險警示 -->
+                    <section class="alert-section">
+                        <div class="section-header">
+                            <h2>低風險警示</h2>
+                            <span class="alert-badge alert-low-badge">12 項</span>
+                        </div>
+
+                        <!-- 警示項目 -->
+                        <div class="alert-item alert-low">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <div style="display: flex; gap: 10px; align-items: center;">
+                                    <div style="width: 32px; height: 32px; background-color: #ddd; border-radius: 50%;">
+                                    </div>
+                                    <div>
+                                        <h3 style="margin: 0;">張美麗 (P12345)</h3>
+                                        <span style="font-size: 12px;">術後第7天 | 2025/03/21 11:40</span>
+                                    </div>
+                                </div>
+                                <span class="alert-badge alert-low-badge">已處理</span>
+                            </div>
+
+                            <p><strong>警示原因：</strong>患者連續3天未填報健康日誌，需要追蹤確認。</p>
+                            <p><strong>處理結果：</strong>已聯繫患者，確認健康狀況良好，僅因出差無法填報日誌。</p>
+
+                            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                <button class="btn btn-secondary">查看處理記錄</button>
+                                <button class="btn btn-secondary">重新開啟</button>
+                            </div>
+                        </div>
+
+                        <div class="alert-item alert-low">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <div style="display: flex; gap: 10px; align-items: center;">
+                                    <div style="width: 32px; height: 32px; background-color: #ddd; border-radius: 50%;">
+                                    </div>
+                                    <div>
+                                        <h3 style="margin: 0;">許小華 (P78901)</h3>
+                                        <span style="font-size: 12px;">術後第4天 | 2025/03/21 08:10</span>
+                                    </div>
+                                </div>
+                                <span class="alert-badge alert-low-badge">待處理</span>
+                            </div>
+
+                            <p><strong>警示原因：</strong>患者詢問術後護理相關問題，需要醫護人員回覆。</p>
+                            <p><strong>系統建議：</strong>1. 檢視患者提問；2. 提供術後護理指導；3. 評估是否需要回診</p>
+
+                            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                <button class="btn btn-primary">回覆問題</button>
+                                <button class="btn btn-secondary">指派給</button>
+                                <button class="btn btn-secondary">標記已閱</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 分頁導航 -->
+                    <div class="pagination">
+                        <button class="btn btn-secondary">上一頁</button>
+                        <button class="btn btn-primary">1</button>
+                        <button class="btn btn-secondary">2</button>
+                        <button class="btn btn-secondary">3</button>
+                        <button class="btn btn-secondary">下一頁</button>
+                    </div>
+                </div>
+
+                <!-- 右側警示統計 -->
+                <div>
+                    <!-- 警示總覽 -->
+                    <section class="alert-section">
+                        <h2>警示總覽</h2>
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px;">
+                            <div class="stat-card">
+                                <div style="font-size: 14px; color: #666;">今日總警示</div>
+                                <div class="stat-value">24</div>
+                                <div style="font-size: 12px; color: #d32f2f;">較昨日 ↑5</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div style="font-size: 14px; color: #666;">待處理警示</div>
+                                <div class="stat-value">14</div>
+                                <div style="font-size: 12px; color: #666;">佔總數 58%</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div style="font-size: 14px; color: #666;">平均處理時間</div>
+                                <div class="stat-value">47分鐘</div>
+                                <div style="font-size: 12px; color: #388e3c;">較昨日 ↓12分鐘</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div style="font-size: 14px; color: #666;">已解決佔比</div>
+                                <div class="stat-value">42%</div>
+                                <div style="font-size: 12px; color: #388e3c;">較昨日 ↑7%</div>
+                            </div>
+                        </div>
+
+                        <!-- 警示類型分布 -->
+                        <h3>警示類型分布</h3>
+                        <div
+                            style="height: 200px; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                            警示類型饼圖佔位符
+                        </div>
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>疼痛異常</span>
+                                <span>8 (33%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>吞嚥困難</span>
+                                <span>6 (25%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>頸部腫脹</span>
+                                <span>4 (17%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>藥物相關</span>
+                                <span>3 (13%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>系統異常</span>
+                                <span>2 (8%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>其他警示</span>
+                                <span>1 (4%)</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 警示處理進度 -->
+                    <section class="alert-section">
+                        <h2>警示處理進度</h2>
+
+                        <div style="margin-bottom: 15px;">
+                            <h3 style="margin-bottom: 10px; font-size: 16px;">高風險警示</h3>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>總計：5</span>
+                                <span>已處理：1 (20%)</span>
+                            </div>
+                            <div style="height: 8px; background-color: #f5f5f5; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 20%; height: 100%; background-color: #d32f2f;"></div>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <h3 style="margin-bottom: 10px; font-size: 16px;">中風險警示</h3>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>總計：7</span>
+                                <span>已處理：3 (43%)</span>
+                            </div>
+                            <div style="height: 8px; background-color: #f5f5f5; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 43%; height: 100%; background-color: #ff8f00;"></div>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <h3 style="margin-bottom: 10px; font-size: 16px;">低風險警示</h3>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>總計：12</span>
+                                <span>已處理：6 (50%)</span>
+                            </div>
+                            <div style="height: 8px; background-color: #f5f5f5; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 50%; height: 100%; background-color: #388e3c;"></div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" style="width: 100%;">產生處理報告</button>
+                    </section>
+
+                    <!-- 警示設定 -->
+                    <section class="alert-section">
+                        <h2>警示閾值設定</h2>
+
+                        <div style="margin-bottom: 15px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span>疼痛指數閾值</span>
+                                <select style="padding: 6px; border-radius: 4px; border: 1px solid #ddd;">
+                                    <option>7分以上</option>
+                                    <option>6分以上</option>
+                                    <option>5分以上</option>
+                                </select>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span>吞嚥困難閾值</span>
+                                <select style="padding: 6px; border-radius: 4px; border: 1px solid #ddd;">
+                                    <option>6分以上</option>
+                                    <option>5分以上</option>
+                                    <option>4分以上</option>
+                                </select>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span>頸部腫脹閾值</span>
+                                <select style="padding: 6px; border-radius: 4px; border: 1px solid #ddd;">
+                                    <option>7分以上</option>
+                                    <option>6分以上</option>
+                                    <option>5分以上</option>
+                                </select>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span>聲音變化閾值</span>
+                                <select style="padding: 6px; border-radius: 4px; border: 1px solid #ddd;">
+                                    <option>5分以上</option>
+                                    <option>4分以上</option>
+                                    <option>3分以上</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-primary" style="flex: 1;">儲存設定</button>
+                            <button class="btn btn-secondary" style="flex: 1;">恢復預設</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 使用共用頁腳組件 -->
+    <script>
+        document.body.innerHTML += document.getElementById('footer-component').innerHTML;
+    </script>
+</body>
+
+</html>
