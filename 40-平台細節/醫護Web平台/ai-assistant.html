@@ -6,149 +6,339 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI輔助決策 - 甲狀腺消融治療智慧追蹤平台</title>
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-        /* 基本樣式設定 */
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        .container {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            margin-left: 250px;
-        }
-
-        /* Header styles */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 250px;
-            z-index: 100;
-        }
-
-        /* Sidebar styles */
-        .sidebar {
-            width: 250px;
-            background-color: #2c3e50;
-            color: #fff;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            overflow-y: auto;
-            padding: 20px 0;
-        }
-
-        /* AI decision support specific styles */
-        .ai-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            margin-top: 70px;
-        }
-
-        .ai-grid {
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            gap: 20px;
-        }
-
-        .ai-section {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .recommendation-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background-color: #4285F4;
-            color: white;
-        }
-
-        .btn-secondary {
-            background-color: #f5f5f5;
-            color: #333;
-            border: 1px solid #ddd;
-        }
-
-        .confidence-high {
-            color: #388e3c;
-        }
-
-        .confidence-medium {
-            color: #ff8f00;
-        }
-
-        .confidence-low {
-            color: #d32f2f;
-        }
-
-        .risk-level {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        .risk-high {
-            background-color: #ffebee;
-            color: #d32f2f;
-        }
-
-        .risk-medium {
-            background-color: #fff8e1;
-            color: #ff8f00;
-        }
-
-        .risk-low {
-            background-color: #e8f5e9;
-            color: #388e3c;
-        }
-    </style>
 </head>
 
 <body>
+    <!-- 引入共用組件 -->
+    <div id="header-component"></div>
+    <div id="sidebar-component"></div>
+
+    <div class="container">
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <div class="section-header">
+                <h1>AI輔助決策系統</h1>
+                <div class="flex align-center">
+                    <button class="btn btn-outline mr-2">產生批量報告</button>
+                    <button class="btn btn-primary">設定AI參數</button>
+                </div>
+            </div>
+
+            <div class="grid grid-2" style="gap: 16px;">
+                <!-- 左側主要區域 -->
+                <div>
+                    <!-- 需要關注的患者區域 -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <div class="flex justify-between align-center">
+                                <h3 class="mb-0">AI風險預警</h3>
+                                <select class="form-control" style="width: auto;">
+                                    <option>所有風險類型</option>
+                                    <option>疼痛管理</option>
+                                    <option>吞嚥困難</option>
+                                    <option>術後併發症</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 風險患者列表 -->
+                        <div class="card-body">
+                            <!-- 患者1 -->
+                            <div class="card mb-3"
+                                style="box-shadow: none; border: 1px solid #dadce0; border-left: 4px solid #EA4335;">
+                                <div style="padding: 16px; background-color: #FEF7F6;">
+                                    <div class="flex justify-between">
+                                        <div class="flex align-center">
+                                            <img src="assets/patient-avatar.svg" alt="患者頭像"
+                                                style="width: 50px; height: 50px; border-radius: 50%; margin-right: 16px;">
+                                            <div>
+                                                <h3 class="mb-0">陳小明</h3>
+                                                <p class="mb-0">ID: P23456 | 術後第2天</p>
+                                            </div>
+                                        </div>
+                                        <span class="badge badge-danger">高風險</span>
+                                    </div>
+                                </div>
+
+                                <div style="padding: 16px;">
+                                    <h4>AI風險預警：疼痛異常上升</h4>
+                                    <p>患者疼痛指數從5上升至8，高於術後第2天預期範圍(3-6)。</p>
+
+                                    <div class="card" style="background-color: #f8f9fa; box-shadow: none;">
+                                        <div style="padding: 16px;">
+                                            <h5 class="mb-1">系統建議</h5>
+                                            <p class="mb-1">1. 評估疼痛部位及性質</p>
+                                            <p class="mb-1">2. 檢查是否有血腫或感染跡象</p>
+                                            <p class="mb-0">3. 考慮調整止痛藥物劑量</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex mt-3">
+                                        <button class="btn btn-primary btn-sm">接受建議</button>
+                                        <button class="btn btn-outline btn-sm ml-2">修改建議</button>
+                                        <button class="btn btn-outline btn-sm ml-2">忽略警示</button>
+                                    </div>
+                                </div>
+
+                                <div style="padding: 12px 16px; background-color: #f8f9fa; font-size: 14px; border-top: 1px solid #dadce0;"
+                                    class="flex justify-between">
+                                    <span>AI信心指數：<span class="text-success">92%</span></span>
+                                    <span>需要醫師確認</span>
+                                </div>
+                            </div>
+
+                            <!-- 患者2 -->
+                            <div class="card"
+                                style="box-shadow: none; border: 1px solid #dadce0; border-left: 4px solid #FBBC05;">
+                                <div style="padding: 16px; background-color: #FFF8E1;">
+                                    <div class="flex justify-between">
+                                        <div class="flex align-center">
+                                            <img src="assets/patient-avatar-2.svg" alt="患者頭像"
+                                                style="width: 50px; height: 50px; border-radius: 50%; margin-right: 16px;">
+                                            <div>
+                                                <h3 class="mb-0">林大華</h3>
+                                                <p class="mb-0">ID: P34567 | 術後第11天</p>
+                                            </div>
+                                        </div>
+                                        <span class="badge badge-warning">中風險</span>
+                                    </div>
+                                </div>
+
+                                <div style="padding: 16px;">
+                                    <h4>AI風險預警：吞嚥障礙持續</h4>
+                                    <p>患者吞嚥困難持續3天未改善，目前評分6分，高於術後第11天預期範圍(2-4)。</p>
+
+                                    <div class="card" style="background-color: #f8f9fa; box-shadow: none;">
+                                        <div style="padding: 16px;">
+                                            <h5 class="mb-1">系統建議</h5>
+                                            <p class="mb-1">1. 安排喉部檢查評估</p>
+                                            <p class="mb-1">2. 考慮調整飲食建議</p>
+                                            <p class="mb-0">3. 監測是否有壓迫神經症狀</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex mt-3">
+                                        <button class="btn btn-primary btn-sm">接受建議</button>
+                                        <button class="btn btn-outline btn-sm ml-2">修改建議</button>
+                                        <button class="btn btn-outline btn-sm ml-2">忽略警示</button>
+                                    </div>
+                                </div>
+
+                                <div style="padding: 12px 16px; background-color: #f8f9fa; font-size: 14px; border-top: 1px solid #dadce0;"
+                                    class="flex justify-between">
+                                    <span>AI信心指數：<span class="text-warning">78%</span></span>
+                                    <span>需要醫師確認</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 治療建議區域 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="flex justify-between align-center">
+                                <h3 class="mb-0">AI治療建議</h3>
+                                <button class="btn btn-primary btn-sm">批量生成建議</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card mb-3" style="box-shadow: none; border: 1px solid #dadce0;">
+                                <div style="padding: 16px;">
+                                    <div class="flex justify-between align-center">
+                                        <h4 class="mb-0">張美麗 (P12345)</h4>
+                                        <span class="badge badge-success">低風險</span>
+                                    </div>
+
+                                    <p class="mt-2"><strong>臨床情況：</strong>術後第7天，恢復良好，疼痛指數2，吞嚥困難1，無異常症狀。</p>
+
+                                    <div style="border-left: 4px solid #4285F4; padding-left: 16px; margin: 16px 0;">
+                                        <h5 class="mb-2">AI建議處置計畫</h5>
+                                        <ol style="margin: 0; padding-left: 20px;">
+                                            <li>可調整止痛藥為需要時使用</li>
+                                            <li>恢復正常飲食</li>
+                                            <li>可逐步恢復日常活動</li>
+                                            <li>下次回診可延長至術後14天</li>
+                                        </ol>
+                                    </div>
+
+                                    <div class="flex justify-between align-center mt-3">
+                                        <div class="flex">
+                                            <button class="btn btn-primary btn-sm">採用建議</button>
+                                            <button class="btn btn-outline btn-sm ml-2">修改建議</button>
+                                        </div>
+                                        <span style="font-size: 14px;">AI信心指數：<span
+                                                class="text-success">94%</span></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card" style="box-shadow: none; border: 1px solid #dadce0;">
+                                <div style="padding: 16px;">
+                                    <div class="flex justify-between align-center">
+                                        <h4 class="mb-0">黃小琪 (P45678)</h4>
+                                        <span class="badge badge-success">低風險</span>
+                                    </div>
+
+                                    <p class="mt-2"><strong>臨床情況：</strong>術後第16天，恢復良好，偶有輕微不適感，整體症狀穩定。</p>
+
+                                    <div style="border-left: 4px solid #4285F4; padding-left: 16px; margin: 16px 0;">
+                                        <h5 class="mb-2">AI建議處置計畫</h5>
+                                        <ol style="margin: 0; padding-left: 20px;">
+                                            <li>停止止痛藥物使用</li>
+                                            <li>可恢復正常生活與工作</li>
+                                            <li>若症狀穩定，可考慮結束密集追蹤</li>
+                                            <li>安排術後30天最終回診評估</li>
+                                        </ol>
+                                    </div>
+
+                                    <div class="flex justify-between align-center mt-3">
+                                        <div class="flex">
+                                            <button class="btn btn-primary btn-sm">採用建議</button>
+                                            <button class="btn btn-outline btn-sm ml-2">修改建議</button>
+                                        </div>
+                                        <span style="font-size: 14px;">AI信心指數：<span
+                                                class="text-success">96%</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右側邊欄 -->
+                <div>
+                    <!-- AI工作統計 -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h3 class="mb-0">AI系統統計</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="grid grid-2 mb-3">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 24px; font-weight: bold;">42</div>
+                                    <div style="color: #5f6368;">今日AI處理案例</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 24px; font-weight: bold; color: #34A853;">91%</div>
+                                    <div style="color: #5f6368;">系統平均準確率</div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-2 mb-3">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 24px; font-weight: bold;">87%</div>
+                                    <div style="color: #5f6368;">醫師採納率</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 24px; font-weight: bold; color: #EA4335;">7</div>
+                                    <div style="color: #5f6368;">待處理警示</div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary" style="width: 100%;">查看詳細報告</button>
+                        </div>
+                    </div>
+
+                    <!-- AI模型性能 -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h3 class="mb-0">AI模型性能</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="flex justify-between align-center mb-1">
+                                    <span>疼痛預測模型</span>
+                                    <span class="text-success">93%</span>
+                                </div>
+                                <div style="height: 6px; background-color: #f5f5f5; border-radius: 3px;">
+                                    <div
+                                        style="width: 93%; height: 100%; background-color: #34A853; border-radius: 3px;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="flex justify-between align-center mb-1">
+                                    <span>併發症預測</span>
+                                    <span class="text-success">90%</span>
+                                </div>
+                                <div style="height: 6px; background-color: #f5f5f5; border-radius: 3px;">
+                                    <div
+                                        style="width: 90%; height: 100%; background-color: #34A853; border-radius: 3px;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="flex justify-between align-center mb-1">
+                                    <span>恢復時間預測</span>
+                                    <span class="text-warning">85%</span>
+                                </div>
+                                <div style="height: 6px; background-color: #f5f5f5; border-radius: 3px;">
+                                    <div
+                                        style="width: 85%; height: 100%; background-color: #FBBC05; border-radius: 3px;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="flex justify-between align-center mb-1">
+                                    <span>治療方案推薦</span>
+                                    <span class="text-success">89%</span>
+                                </div>
+                                <div style="height: 6px; background-color: #f5f5f5; border-radius: 3px;">
+                                    <div
+                                        style="width: 89%; height: 100%; background-color: #34A853; border-radius: 3px;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="font-size: 14px; color: #666; text-align: center; margin-top: 12px;">
+                                最近更新：2025/03/21 08:30
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI 學習進程 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="mb-0">AI學習進程</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="card mb-3" style="background-color: #E8F0FE; box-shadow: none;">
+                                <div style="padding: 16px;">
+                                    <h4 class="mb-1">模型訓練進行中</h4>
+                                    <div>正在整合新的臨床數據以改進預測模型</div>
+                                    <div
+                                        style="height: 6px; background-color: #fff; border-radius: 3px; margin-top: 12px;">
+                                        <div
+                                            style="width: 65%; height: 100%; background-color: #4285F4; border-radius: 3px;">
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 14px; color: #666; text-align: right; margin-top: 4px;">65%
+                                        完成</div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="mb-2">最近學習成果</h4>
+                                <ul style="padding-left: 20px; margin-bottom: 16px;">
+                                    <li>術後疼痛模式識別準確率提升4%</li>
+                                    <li>吞嚥困難預測模型敏感度提高</li>
+                                    <li>新增頸部腫脹評估參數</li>
+                                </ul>
+                                <button class="btn btn-outline" style="width: 100%;">查看AI學習報告</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 頁腳 -->
+    <div id="footer-component"></div>
+
     <!-- 腳本 -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -164,304 +354,6 @@
                     document.getElementById('footer-component').innerHTML = doc.getElementById('footer-template').outerHTML;
                 });
         });
-    </script>
-
-    <div class="container">
-        <!-- 主要內容區域 -->
-        <main class="main-content">
-            <div class="ai-header">
-                <h1>AI輔助決策系統</h1>
-                <div>
-                    <button class="btn btn-primary">產生批量報告</button>
-                    <button class="btn btn-secondary">設定AI參數</button>
-                </div>
-            </div>
-
-            <div class="ai-grid">
-                <!-- 左側主要區域 -->
-                <div>
-                    <!-- 需要關注的患者區域 -->
-                    <section class="ai-section">
-                        <div class="section-header">
-                            <h2>AI風險預警</h2>
-                            <div>
-                                <select style="padding: 6px; border-radius: 4px; border: 1px solid #ddd;">
-                                    <option>所有風險類型</option>
-                                    <option>疼痛管理</option>
-                                    <option>吞嚥困難</option>
-                                    <option>術後併發症</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- 風險患者列表 -->
-                        <div>
-                            <!-- 患者1 -->
-                            <div
-                                style="border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; overflow: hidden;">
-                                <div
-                                    style="display: flex; justify-content: space-between; padding: 15px; background-color: #ffebee;">
-                                    <div style="display: flex; gap: 15px;">
-                                        <div
-                                            style="width: 50px; height: 50px; background-color: #ddd; border-radius: 50%;">
-                                        </div>
-                                        <div>
-                                            <h3 style="margin: 0;">陳小明</h3>
-                                            <p style="margin: 5px 0;">ID: P23456 | 術後第2天</p>
-                                        </div>
-                                    </div>
-                                    <span class="risk-high risk-level">高風險</span>
-                                </div>
-
-                                <div style="padding: 15px;">
-                                    <h4>AI風險預警：疼痛異常上升</h4>
-                                    <p>患者疼痛指數從5上升至8，高於術後第2天預期範圍(3-6)。</p>
-
-                                    <div
-                                        style="background-color: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0;">
-                                        <h5 style="margin: 0 0 5px 0;">系統建議</h5>
-                                        <p style="margin: 0; font-size: 14px;">1. 評估疼痛部位及性質</p>
-                                        <p style="margin: 0; font-size: 14px;">2. 檢查是否有血腫或感染跡象</p>
-                                        <p style="margin: 0; font-size: 14px;">3. 考慮調整止痛藥物劑量</p>
-                                    </div>
-
-                                    <div style="display: flex; gap: 10px; margin-top: 15px;">
-                                        <button class="btn btn-primary">接受建議</button>
-                                        <button class="btn btn-secondary">修改建議</button>
-                                        <button class="btn btn-secondary">忽略警示</button>
-                                    </div>
-                                </div>
-
-                                <div
-                                    style="padding: 10px 15px; background-color: #f5f5f5; font-size: 12px; display: flex; justify-content: space-between;">
-                                    <span>AI信心指數：<span class="confidence-high">92%</span></span>
-                                    <span>需要醫師確認</span>
-                                </div>
-                            </div>
-
-                            <!-- 患者2 -->
-                            <div
-                                style="border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; overflow: hidden;">
-                                <div
-                                    style="display: flex; justify-content: space-between; padding: 15px; background-color: #fff8e1;">
-                                    <div style="display: flex; gap: 15px;">
-                                        <div
-                                            style="width: 50px; height: 50px; background-color: #ddd; border-radius: 50%;">
-                                        </div>
-                                        <div>
-                                            <h3 style="margin: 0;">林大華</h3>
-                                            <p style="margin: 5px 0;">ID: P34567 | 術後第11天</p>
-                                        </div>
-                                    </div>
-                                    <span class="risk-medium risk-level">中風險</span>
-                                </div>
-
-                                <div style="padding: 15px;">
-                                    <h4>AI風險預警：吞嚥障礙持續</h4>
-                                    <p>患者吞嚥困難持續3天未改善，目前評分6分，高於術後第11天預期範圍(2-4)。</p>
-
-                                    <div
-                                        style="background-color: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0;">
-                                        <h5 style="margin: 0 0 5px 0;">系統建議</h5>
-                                        <p style="margin: 0; font-size: 14px;">1. 安排喉部檢查評估</p>
-                                        <p style="margin: 0; font-size: 14px;">2. 考慮調整飲食建議</p>
-                                        <p style="margin: 0; font-size: 14px;">3. 監測是否有壓迫神經症狀</p>
-                                    </div>
-
-                                    <div style="display: flex; gap: 10px; margin-top: 15px;">
-                                        <button class="btn btn-primary">接受建議</button>
-                                        <button class="btn btn-secondary">修改建議</button>
-                                        <button class="btn btn-secondary">忽略警示</button>
-                                    </div>
-                                </div>
-
-                                <div
-                                    style="padding: 10px 15px; background-color: #f5f5f5; font-size: 12px; display: flex; justify-content: space-between;">
-                                    <span>AI信心指數：<span class="confidence-medium">78%</span></span>
-                                    <span>需要醫師確認</span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- 治療建議區域 -->
-                    <section class="ai-section">
-                        <div class="section-header">
-                            <h2>AI治療建議</h2>
-                            <button class="btn btn-primary">批量生成建議</button>
-                        </div>
-
-                        <div class="recommendation-card">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <h3 style="margin: 0;">張美麗 (P12345)</h3>
-                                <span class="risk-low risk-level">低風險</span>
-                            </div>
-
-                            <p><strong>臨床情況：</strong>術後第7天，恢復良好，疼痛指數2，吞嚥困難1，無異常症狀。</p>
-
-                            <div style="border-left: 4px solid #4285F4; padding-left: 15px; margin: 15px 0;">
-                                <h4 style="margin: 0 0 10px 0;">AI建議處置計畫</h4>
-                                <ol style="margin: 0; padding-left: 20px;">
-                                    <li>可調整止痛藥為需要時使用</li>
-                                    <li>恢復正常飲食</li>
-                                    <li>可逐步恢復日常活動</li>
-                                    <li>下次回診可延長至術後14天</li>
-                                </ol>
-                            </div>
-
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <div style="display: flex; gap: 10px;">
-                                    <button class="btn btn-primary">採用建議</button>
-                                    <button class="btn btn-secondary">修改建議</button>
-                                </div>
-                                <span style="font-size: 12px;">AI信心指數：<span class="confidence-high">94%</span></span>
-                            </div>
-                        </div>
-
-                        <div class="recommendation-card">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <h3 style="margin: 0;">黃小琪 (P45678)</h3>
-                                <span class="risk-low risk-level">低風險</span>
-                            </div>
-
-                            <p><strong>臨床情況：</strong>術後第16天，恢復良好，偶有輕微不適感，整體症狀穩定。</p>
-
-                            <div style="border-left: 4px solid #4285F4; padding-left: 15px; margin: 15px 0;">
-                                <h4 style="margin: 0 0 10px 0;">AI建議處置計畫</h4>
-                                <ol style="margin: 0; padding-left: 20px;">
-                                    <li>停止止痛藥物使用</li>
-                                    <li>可恢復正常生活與工作</li>
-                                    <li>若症狀穩定，可考慮結束密集追蹤</li>
-                                    <li>安排術後30天最終回診評估</li>
-                                </ol>
-                            </div>
-
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <div style="display: flex; gap: 10px;">
-                                    <button class="btn btn-primary">採用建議</button>
-                                    <button class="btn btn-secondary">修改建議</button>
-                                </div>
-                                <span style="font-size: 12px;">AI信心指數：<span class="confidence-high">96%</span></span>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
-                <!-- 右側邊欄 -->
-                <div>
-                    <!-- AI工作統計 -->
-                    <section class="ai-section">
-                        <h3>AI系統統計</h3>
-
-                        <div style="margin-bottom: 15px;">
-                            <div style="font-size: 14px; color: #666; margin-bottom: 5px;">今日AI處理案例</div>
-                            <div style="font-size: 24px; font-weight: bold;">42</div>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <div style="font-size: 14px; color: #666; margin-bottom: 5px;">系統平均準確率</div>
-                            <div style="font-size: 24px; font-weight: bold;" class="confidence-high">91%</div>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <div style="font-size: 14px; color: #666; margin-bottom: 5px;">醫師採納率</div>
-                            <div style="font-size: 24px; font-weight: bold;">87%</div>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <div style="font-size: 14px; color: #666; margin-bottom: 5px;">待處理警示</div>
-                            <div style="font-size: 24px; font-weight: bold; color: #d32f2f;">7</div>
-                        </div>
-
-                        <button class="btn btn-primary" style="width: 100%;">查看詳細報告</button>
-                    </section>
-
-                    <!-- AI模型性能 -->
-                    <section class="ai-section">
-                        <h3>AI模型性能</h3>
-
-                        <div style="margin-bottom: 15px;">
-                            <div style="display: flex; justify-content: space-between; font-size: 14px;">
-                                <span>疼痛預測模型</span>
-                                <span class="confidence-high">93%</span>
-                            </div>
-                            <div style="height: 6px; background-color: #f5f5f5; border-radius: 3px; margin-top: 5px;">
-                                <div style="width: 93%; height: 100%; background-color: #388e3c; border-radius: 3px;">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <div style="display: flex; justify-content: space-between; font-size: 14px;">
-                                <span>併發症預測</span>
-                                <span class="confidence-high">90%</span>
-                            </div>
-                            <div style="height: 6px; background-color: #f5f5f5; border-radius: 3px; margin-top: 5px;">
-                                <div style="width: 90%; height: 100%; background-color: #388e3c; border-radius: 3px;">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <div style="display: flex; justify-content: space-between; font-size: 14px;">
-                                <span>恢復時間預測</span>
-                                <span class="confidence-medium">85%</span>
-                            </div>
-                            <div style="height: 6px; background-color: #f5f5f5; border-radius: 3px; margin-top: 5px;">
-                                <div style="width: 85%; height: 100%; background-color: #ff8f00; border-radius: 3px;">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <div style="display: flex; justify-content: space-between; font-size: 14px;">
-                                <span>治療方案推薦</span>
-                                <span class="confidence-high">89%</span>
-                            </div>
-                            <div style="height: 6px; background-color: #f5f5f5; border-radius: 3px; margin-top: 5px;">
-                                <div style="width: 89%; height: 100%; background-color: #388e3c; border-radius: 3px;">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="font-size: 12px; color: #666; text-align: center; margin-top: 10px;">
-                            最近更新：2025/03/21 08:30
-                        </div>
-                    </section>
-
-                    <!-- AI 學習進程 -->
-                    <section class="ai-section">
-                        <h3>AI學習進程</h3>
-
-                        <div style="background-color: #e3f2fd; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
-                            <div style="font-weight: bold; margin-bottom: 5px;">模型訓練進行中</div>
-                            <div style="font-size: 14px;">正在整合新的臨床數據以改進預測模型</div>
-                            <div style="height: 6px; background-color: #fff; border-radius: 3px; margin-top: 10px;">
-                                <div style="width: 65%; height: 100%; background-color: #4285F4; border-radius: 3px;">
-                                </div>
-                            </div>
-                            <div style="font-size: 12px; color: #666; text-align: right; margin-top: 5px;">65% 完成</div>
-                        </div>
-
-                        <div style="font-size: 14px; margin-bottom: 15px;">
-                            <div style="font-weight: bold; margin-bottom: 5px;">最近學習成果</div>
-                            <ul style="margin: 0; padding-left: 20px;">
-                                <li>術後疼痛模式識別準確率提升4%</li>
-                                <li>吞嚥困難預測模型敏感度提高</li>
-                                <li>新增頸部腫脹評估參數</li>
-                            </ul>
-                        </div>
-
-                        <button class="btn btn-secondary" style="width: 100%;">查看AI學習報告</button>
-                    </section>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- 使用共用頁腳組件 -->
-    <script>
-        document.body.innerHTML += document.getElementById('footer-component').innerHTML;
     </script>
 </body>
 
