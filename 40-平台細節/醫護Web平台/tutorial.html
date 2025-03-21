@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>操作教學中心 - 甲狀腺消融治療智慧追蹤平台</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -421,13 +421,18 @@
 
     <!-- 腳本 -->
     <script>
-        // 載入共用組件
         document.addEventListener('DOMContentLoaded', function () {
-            // 這裡假設共用組件已經通過某種方式載入
-            // 實際實現中，可能需要使用AJAX或其他方式載入組件
-            document.getElementById('header-component').innerHTML = '<!-- 頭部組件將在這裡加載 -->';
-            document.getElementById('sidebar-component').innerHTML = '<!-- 側邊欄組件將在這裡加載 -->';
-            document.getElementById('footer-component').innerHTML = '<!-- 頁腳組件將在這裡加載 -->';
+            // 載入頭部組件
+            fetch('components.html')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+
+                    document.getElementById('header-component').innerHTML = doc.getElementById('header-template').outerHTML;
+                    document.getElementById('sidebar-component').innerHTML = doc.getElementById('sidebar-template').outerHTML;
+                    document.getElementById('footer-component').innerHTML = doc.getElementById('footer-template').outerHTML;
+                });
 
             // 手風琴功能實現
             document.querySelectorAll('.accordion-header').forEach(header => {

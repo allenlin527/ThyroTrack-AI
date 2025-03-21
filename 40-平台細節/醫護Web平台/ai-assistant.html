@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI輔助決策 - 甲狀腺消融治療智慧追蹤平台</title>
+    <link rel="stylesheet" href="css/styles.css">
     <style>
         /* 基本樣式設定 */
         body {
@@ -148,10 +149,21 @@
 </head>
 
 <body>
-    <!-- 使用共用頭部組件 -->
+    <!-- 腳本 -->
     <script>
-        document.body.innerHTML += document.getElementById('header-component').innerHTML;
-        document.body.innerHTML += document.getElementById('sidebar-component').innerHTML;
+        document.addEventListener('DOMContentLoaded', function () {
+            // 載入頭部組件
+            fetch('components.html')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+
+                    document.getElementById('header-component').innerHTML = doc.getElementById('header-template').outerHTML;
+                    document.getElementById('sidebar-component').innerHTML = doc.getElementById('sidebar-template').outerHTML;
+                    document.getElementById('footer-component').innerHTML = doc.getElementById('footer-template').outerHTML;
+                });
+        });
     </script>
 
     <div class="container">

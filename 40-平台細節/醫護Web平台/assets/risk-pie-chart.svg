@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250">
+  <!-- 背景 -->
+  <rect width="400" height="250" fill="#FFFFFF" />
+  
+  <!-- 圓餅圖 -->
+  <g transform="translate(120, 120)">
+    <!-- 高風險部分 (12人, 總人數145, 佔比約8.3%) -->
+    <path d="M 0 0 L 80 0 A 80 80 0 0 1 76.5 24.7 L 0 0" fill="#EA4335" />
+    
+    <!-- 中度風險部分 (36人, 總人數145, 佔比約24.8%) -->
+    <path d="M 0 0 L 76.5 24.7 A 80 80 0 0 1 24.7 76.5 L 0 0" fill="#FBBC05" />
+    
+    <!-- 低風險部分 (97人, 總人數145, 佔比約66.9%) -->
+    <path d="M 0 0 L 24.7 76.5 A 80 80 0 1 1 80 0 L 0 0" fill="#34A853" />
+    
+    <!-- 中間白色圓形，使圓餅圖變成環形 -->
+    <circle cx="0" cy="0" r="40" fill="#FFFFFF" />
+  </g>
+  
+  <!-- 圖例 -->
+  <rect x="250" y="80" width="16" height="16" fill="#EA4335" />
+  <text x="275" y="93" font-family="Arial" font-size="14" fill="#666">高風險 (12, 8.3%)</text>
+  
+  <rect x="250" y="110" width="16" height="16" fill="#FBBC05" />
+  <text x="275" y="123" font-family="Arial" font-size="14" fill="#666">中度風險 (36, 24.8%)</text>
+  
+  <rect x="250" y="140" width="16" height="16" fill="#34A853" />
+  <text x="275" y="153" font-family="Arial" font-size="14" fill="#666">低風險 (97, 66.9%)</text>
+  
+  <!-- 標題 -->
+  <text x="200" y="30" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">患者風險分佈</text>
+</svg> 
