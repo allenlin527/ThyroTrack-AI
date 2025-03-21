@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>患者詳情頁面 - 甲狀腺消融治療智慧追蹤平台</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- 引入共用組件 -->
+    <div id="header-component"></div>
+    <div id="sidebar-component"></div>
+
+    <div class="container">
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <div class="section-header">
+                <div class="flex justify-between align-center">
+                    <div>
+                        <h1>患者詳細資料</h1>
+                        <div class="flex align-center">
+                            <a href="patients.html" class="link">返回患者列表</a>
+                        </div>
+                    </div>
+                    <div class="flex align-center">
+                        <button class="btn btn-outline mr-2">匯出病歷</button>
+                        <button class="btn btn-primary mr-2">記錄追蹤</button>
+                        <button class="btn btn-outline">聯繫患者</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 患者基本資料 -->
+            <div class="card mb-3">
+                <div class="flex" style="padding: 20px;">
+                    <div style="flex: 0 0 100px; margin-right: 20px;">
+                        <img src="assets/patient-avatar.png" alt="患者頭像"
+                            style="width: 100px; height: 100px; border-radius: 50%;">
+                    </div>
+                    <div style="flex-grow: 1;">
+                        <div class="flex justify-between align-center">
+                            <div>
+                                <h2 class="mb-0">陳小明</h2>
+                                <p class="mb-0">患者ID: #P12345 | 病歷號: 987654</p>
+                            </div>
+                            <span class="badge badge-danger">高風險患者</span>
+                        </div>
+                        <div class="grid grid-3 mt-3">
+                            <div>
+                                <p class="mb-0"><strong>性別：</strong>男</p>
+                                <p class="mb-0"><strong>年齡：</strong>45歲</p>
+                                <p class="mb-0"><strong>聯繫電話：</strong>0912-345-678</p>
+                            </div>
+                            <div>
+                                <p class="mb-0"><strong>手術日期：</strong>2025/03/15</p>
+                                <p class="mb-0"><strong>術後天數：</strong>6天</p>
+                                <p class="mb-0"><strong>治療類型：</strong>射頻消融術 (RFA)</p>
+                            </div>
+                            <div>
+                                <p class="mb-0"><strong>主治醫師：</strong>王大明醫師</p>
+                                <p class="mb-0"><strong>負責護理師：</strong>李芳芳護理師</p>
+                                <p class="mb-0"><strong>下次回診：</strong>2025/03/22 09:30</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 症狀與監測數據 -->
+            <div class="grid grid-2" style="gap: 16px;">
+                <!-- 症狀概況 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="mb-0">當前症狀</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid grid-3" style="gap: 16px;">
+                            <div class="card" style="box-shadow: none; border: 1px solid #dadce0;">
+                                <div style="padding: 16px; text-align: center;">
+                                    <h4 class="mb-0">疼痛指數</h4>
+                                    <div style="font-size: 32px; font-weight: bold; color: #EA4335;">9/10</div>
+                                    <p class="mt-1 mb-0 text-danger">異常 ↑ 增加</p>
+                                </div>
+                            </div>
+                            <div class="card" style="box-shadow: none; border: 1px solid #dadce0;">
+                                <div style="padding: 16px; text-align: center;">
+                                    <h4 class="mb-0">吞嚥困難</h4>
+                                    <div style="font-size: 32px; font-weight: bold; color: #FBBC05;">6/10</div>
+                                    <p class="mt-1 mb-0 text-warning">中度 ↑ 小幅增加</p>
+                                </div>
+                            </div>
+                            <div class="card" style="box-shadow: none; border: 1px solid #dadce0;">
+                                <div style="padding: 16px; text-align: center;">
+                                    <h4 class="mb-0">頸部腫脹</h4>
+                                    <div style="font-size: 32px; font-weight: bold; color: #EA4335;">8/10</div>
+                                    <p class="mt-1 mb-0 text-danger">異常 ↑ 顯著增加</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <p><strong>患者最新報告 (2025/03/21 08:45)：</strong></p>
+                            <p>頸部疼痛昨晚加劇，疼痛藥物效果不佳；吞嚥固體食物困難，需要將食物弄碎；頸部腫脹明顯增加，感覺緊繃且活動受限。昨日開始低度發燒 (37.5°C)。</p>
+                        </div>
+
+                        <div class="card mt-3" style="background-color: #FEF7F6; border: 1px solid #FADAD9;">
+                            <div style="padding: 16px;">
+                                <div class="flex align-center" style="margin-bottom: 8px;">
+                                    <span style="color: #EA4335; font-size: 20px; margin-right: 8px;">⚠️</span>
+                                    <h4 class="mb-0" style="color: #EA4335;">AI預警提示</h4>
+                                </div>
+                                <p>患者症狀進展符合術後感染或血腫形成的可能性。建議：</p>
+                                <ul>
+                                    <li>緊急遠程評估或安排回診檢查</li>
+                                    <li>考慮調整止痛藥物劑量</li>
+                                    <li>評估抗生素治療必要性</li>
+                                </ul>
+                                <div class="flex justify-between align-center mt-2">
+                                    <span style="color: #666;">風險評分：85/100</span>
+                                    <a href="ai-assistant.html" class="link">查看詳細AI分析 →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 監測數據圖表 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex justify-between align-center">
+                            <h3 class="mb-0">症狀趨勢</h3>
+                            <select class="form-control" style="width: auto;">
+                                <option>最近7天</option>
+                                <option>最近14天</option>
+                                <option>最近30天</option>
+                                <option>術後全程</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div
+                            style="height: 250px; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                            症狀趨勢圖表 (折線圖)
+                        </div>
+                        <div class="flex justify-between" style="margin-top: 16px;">
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #EA4335; border-radius: 50%; margin-right: 4px;"></span>
+                                <span style="margin-right: 12px;">疼痛</span>
+
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #FBBC05; border-radius: 50%; margin-right: 4px;"></span>
+                                <span style="margin-right: 12px;">吞嚥困難</span>
+
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #4285F4; border-radius: 50%; margin-right: 4px;"></span>
+                                <span>頸部腫脹</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">下載圖表</button>
+                        </div>
+
+                        <h4 class="mt-3">生命體徵</h4>
+                        <div
+                            style="height: 150px; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                            生命體徵圖表 (折線圖)
+                        </div>
+                        <div class="flex justify-between" style="margin-top: 16px;">
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #34A853; border-radius: 50%; margin-right: 4px;"></span>
+                                <span style="margin-right: 12px;">體溫</span>
+
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #4285F4; border-radius: 50%; margin-right: 4px;"></span>
+                                <span style="margin-right: 12px;">心率</span>
+
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #FBBC05; border-radius: 50%; margin-right: 4px;"></span>
+                                <span>血壓</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 診療記錄與用藥追蹤 -->
+            <div class="grid grid-2" style="gap: 16px; margin-top: 16px;">
+                <!-- 診療記錄 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex justify-between align-center">
+                            <h3 class="mb-0">診療記錄</h3>
+                            <button class="btn btn-primary btn-sm">添加記錄</button>
+                        </div>
+                    </div>
+                    <div style="max-height: 400px; overflow-y: auto;">
+                        <table class="table">
+                            <thead style="position: sticky; top: 0; background-color: white;">
+                                <tr>
+                                    <th>日期</th>
+                                    <th>類型</th>
+                                    <th>記錄者</th>
+                                    <th>評估/處置</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2025/03/20</td>
+                                    <td>遠距諮詢</td>
+                                    <td>王大明醫師</td>
+                                    <td>
+                                        <p class="mb-0">患者報告吞嚥困難加劇，疼痛控制不佳。視訊檢查頸部腫脹明顯。</p>
+                                        <p class="mb-0"><strong>處置：</strong>調整止痛藥物，建議冰敷緩解腫脹，安排明日回診評估</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2025/03/18</td>
+                                    <td>電話追蹤</td>
+                                    <td>李芳芳護理師</td>
+                                    <td>
+                                        <p class="mb-0">患者反應疼痛指數5-6分，吞嚥稍有困難但能進食軟食。未發現異常症狀。</p>
+                                        <p class="mb-0"><strong>處置：</strong>確認患者遵醫囑用藥，衛教傷口護理注意事項</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2025/03/15</td>
+                                    <td>手術記錄</td>
+                                    <td>王大明醫師</td>
+                                    <td>
+                                        <p class="mb-0">進行射頻消融術(RFA)治療甲狀腺結節，手術順利，無立即併發症。</p>
+                                        <p class="mb-0"><strong>治療範圍：</strong>右葉3.5cm結節，左葉2.1cm結節</p>
+                                        <p class="mb-0"><strong>處置：</strong>開立止痛藥物，一週後返診複查</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2025/03/10</td>
+                                    <td>術前評估</td>
+                                    <td>王大明醫師</td>
+                                    <td>
+                                        <p class="mb-0">檢查甲狀腺結節狀況，評估適合射頻消融術。</p>
+                                        <p class="mb-0"><strong>檢查：</strong>超音波確認結節位置與大小，血液檢查正常</p>
+                                        <p class="mb-0"><strong>處置：</strong>安排3/15進行射頻消融術，術前衛教已完成</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 用藥與治療計畫 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex justify-between align-center">
+                            <h3 class="mb-0">用藥與治療計畫</h3>
+                            <button class="btn btn-primary btn-sm">更新計畫</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h4>當前用藥</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>藥物名稱</th>
+                                    <th>劑量</th>
+                                    <th>頻率</th>
+                                    <th>開始日期</th>
+                                    <th>說明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>乙醯氨酚 (Acetaminophen)</td>
+                                    <td>500mg</td>
+                                    <td>每6小時一次</td>
+                                    <td>2025/03/15</td>
+                                    <td>疼痛控制</td>
+                                </tr>
+                                <tr>
+                                    <td>布洛芬 (Ibuprofen)</td>
+                                    <td>400mg</td>
+                                    <td>每8小時一次</td>
+                                    <td>2025/03/15</td>
+                                    <td>消炎止痛</td>
+                                </tr>
+                                <tr>
+                                    <td>甲狀腺素 (Levothyroxine)</td>
+                                    <td>50μg</td>
+                                    <td>每日一次</td>
+                                    <td>2025/03/15</td>
+                                    <td>甲狀腺功能維持</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4 class="mt-3">治療與復健計畫</h4>
+                        <div class="card" style="box-shadow: none; border: 1px solid #dadce0;">
+                            <div style="padding: 16px;">
+                                <h5>當前階段：術後急性期 (0-14天)</h5>
+                                <ul>
+                                    <li>嚴密監測頸部腫脹、疼痛與吞嚥功能</li>
+                                    <li>冰敷：每日4-6次，每次15分鐘，減輕腫脹</li>
+                                    <li>進食：軟質食物為主，避免過熱或過冷食物</li>
+                                    <li>活動：適度休息，避免劇烈運動和頸部過度活動</li>
+                                    <li>傷口護理：保持清潔乾燥，避免浸濕</li>
+                                </ul>
+
+                                <h5 class="mt-2">下階段：術後恢復期 (15-30天)</h5>
+                                <ul>
+                                    <li>逐步增加頸部活動範圍</li>
+                                    <li>返回正常飲食</li>
+                                    <li>可考慮溫熱敷促進恢復</li>
+                                    <li>逐步恢復正常工作和生活</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <h4>後續追蹤安排</h4>
+                            <div class="flex justify-between align-center mb-2">
+                                <div>
+                                    <span class="badge badge-primary">回診</span>
+                                    <span class="ml-1">2025/03/22 09:30</span>
+                                </div>
+                                <button class="btn btn-outline btn-sm">重新安排</button>
+                            </div>
+                            <div class="flex justify-between align-center">
+                                <div>
+                                    <span class="badge badge-success">遠距諮詢</span>
+                                    <span class="ml-1">2025/03/29 14:00</span>
+                                </div>
+                                <button class="btn btn-outline btn-sm">重新安排</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 頁腳 -->
+    <div id="footer-component"></div>
+
+    <!-- 腳本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 載入共用組件
+            fetch('components.html')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+
+                    document.getElementById('header-component').innerHTML = doc.getElementById('header-template').outerHTML;
+                    document.getElementById('sidebar-component').innerHTML = doc.getElementById('sidebar-template').outerHTML;
+                    document.getElementById('footer-component').innerHTML = doc.getElementById('footer-template').outerHTML;
+                });
+        });
+    </script>
+</body>
+
+</html>

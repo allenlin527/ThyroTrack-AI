@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作教學中心 - 甲狀腺消融治療智慧追蹤平台</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- 引入共用組件 -->
+    <div id="header-component"></div>
+    <div id="sidebar-component"></div>
+
+    <div class="container">
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <div class="section-header">
+                <h1>操作教學中心</h1>
+                <p>快速上手使用甲狀腺消融治療智慧追蹤平台的所有功能</p>
+            </div>
+
+            <!-- 搜尋與篩選區塊 -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="flex align-center" style="gap: 16px;">
+                        <div style="flex-grow: 1;">
+                            <input type="text" class="form-control" placeholder="搜尋教學或問題...">
+                        </div>
+                        <select class="form-control" style="width: auto; min-width: 180px;">
+                            <option>所有類別</option>
+                            <option>快速入門</option>
+                            <option>患者管理</option>
+                            <option>遠距諮詢</option>
+                            <option>AI輔助決策</option>
+                            <option>數據分析</option>
+                        </select>
+                        <select class="form-control" style="width: auto; min-width: 180px;">
+                            <option>所有角色</option>
+                            <option>醫師</option>
+                            <option>護理師</option>
+                            <option>研究人員</option>
+                            <option>管理員</option>
+                        </select>
+                        <button class="btn btn-primary">搜尋</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 快速入門區塊 -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h3 class="mb-0">快速入門</h3>
+                        <a href="#" class="link">查看全部 →</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="grid grid-3" style="gap: 16px;">
+                        <div class="card" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="position: relative;">
+                                <img src="https://via.placeholder.com/400x225" alt="平台介紹"
+                                    style="width: 100%; height: 160px; object-fit: cover;">
+                                <div
+                                    style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 8px 16px;">
+                                    <span>11:25</span>
+                                </div>
+                            </div>
+                            <div style="padding: 16px;">
+                                <h4>平台功能介紹與導覽</h4>
+                                <p class="text-secondary">了解甲狀腺消融治療智慧追蹤平台的核心功能與基本操作</p>
+                                <div class="flex justify-between align-center mt-2">
+                                    <span class="badge badge-primary">快速入門</span>
+                                    <button class="btn btn-sm btn-outline">觀看</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="position: relative;">
+                                <img src="https://via.placeholder.com/400x225" alt="患者管理"
+                                    style="width: 100%; height: 160px; object-fit: cover;">
+                                <div
+                                    style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 8px 16px;">
+                                    <span>08:42</span>
+                                </div>
+                            </div>
+                            <div style="padding: 16px;">
+                                <h4>患者資料管理指南</h4>
+                                <p class="text-secondary">學習如何新增、編輯和管理患者資料，以及如何使用患者追蹤功能</p>
+                                <div class="flex justify-between align-center mt-2">
+                                    <span class="badge badge-primary">快速入門</span>
+                                    <button class="btn btn-sm btn-outline">觀看</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="position: relative;">
+                                <img src="https://via.placeholder.com/400x225" alt="警示系統"
+                                    style="width: 100%; height: 160px; object-fit: cover;">
+                                <div
+                                    style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 8px 16px;">
+                                    <span>07:15</span>
+                                </div>
+                            </div>
+                            <div style="padding: 16px;">
+                                <h4>警示管理與處理流程</h4>
+                                <p class="text-secondary">了解如何辨識、評估和處理患者警示，提升風險管理效率</p>
+                                <div class="flex justify-between align-center mt-2">
+                                    <span class="badge badge-primary">快速入門</span>
+                                    <button class="btn btn-sm btn-outline">觀看</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 教學分類區塊 -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3 class="mb-0">依功能分類</h3>
+                </div>
+                <div class="card-body">
+                    <div class="grid grid-4" style="gap: 16px;">
+                        <div class="card" style="border: 1px solid #dadce0; box-shadow: none; cursor: pointer;">
+                            <div style="padding: 20px; text-align: center;">
+                                <div
+                                    style="width: 60px; height: 60px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px auto;">
+                                    <span style="font-size: 28px;">📊</span>
+                                </div>
+                                <h4>儀表板操作</h4>
+                                <p class="text-secondary">12 個教學資源</p>
+                            </div>
+                        </div>
+                        <div class="card" style="border: 1px solid #dadce0; box-shadow: none; cursor: pointer;">
+                            <div style="padding: 20px; text-align: center;">
+                                <div
+                                    style="width: 60px; height: 60px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px auto;">
+                                    <span style="font-size: 28px;">👤</span>
+                                </div>
+                                <h4>患者管理</h4>
+                                <p class="text-secondary">18 個教學資源</p>
+                            </div>
+                        </div>
+                        <div class="card" style="border: 1px solid #dadce0; box-shadow: none; cursor: pointer;">
+                            <div style="padding: 20px; text-align: center;">
+                                <div
+                                    style="width: 60px; height: 60px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px auto;">
+                                    <span style="font-size: 28px;">🚨</span>
+                                </div>
+                                <h4>警示系統</h4>
+                                <p class="text-secondary">10 個教學資源</p>
+                            </div>
+                        </div>
+                        <div class="card" style="border: 1px solid #dadce0; box-shadow: none; cursor: pointer;">
+                            <div style="padding: 20px; text-align: center;">
+                                <div
+                                    style="width: 60px; height: 60px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px auto;">
+                                    <span style="font-size: 28px;">🤖</span>
+                                </div>
+                                <h4>AI輔助決策</h4>
+                                <p class="text-secondary">15 個教學資源</p>
+                            </div>
+                        </div>
+                        <div class="card" style="border: 1px solid #dadce0; box-shadow: none; cursor: pointer;">
+                            <div style="padding: 20px; text-align: center;">
+                                <div
+                                    style="width: 60px; height: 60px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px auto;">
+                                    <span style="font-size: 28px;">📱</span>
+                                </div>
+                                <h4>遠距諮詢</h4>
+                                <p class="text-secondary">8 個教學資源</p>
+                            </div>
+                        </div>
+                        <div class="card" style="border: 1px solid #dadce0; box-shadow: none; cursor: pointer;">
+                            <div style="padding: 20px; text-align: center;">
+                                <div
+                                    style="width: 60px; height: 60px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px auto;">
+                                    <span style="font-size: 28px;">📈</span>
+                                </div>
+                                <h4>數據分析</h4>
+                                <p class="text-secondary">14 個教學資源</p>
+                            </div>
+                        </div>
+                        <div class="card" style="border: 1px solid #dadce0; box-shadow: none; cursor: pointer;">
+                            <div style="padding: 20px; text-align: center;">
+                                <div
+                                    style="width: 60px; height: 60px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px auto;">
+                                    <span style="font-size: 28px;">⚙️</span>
+                                </div>
+                                <h4>系統設定</h4>
+                                <p class="text-secondary">9 個教學資源</p>
+                            </div>
+                        </div>
+                        <div class="card" style="border: 1px solid #dadce0; box-shadow: none; cursor: pointer;">
+                            <div style="padding: 20px; text-align: center;">
+                                <div
+                                    style="width: 60px; height: 60px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px auto;">
+                                    <span style="font-size: 28px;">🔒</span>
+                                </div>
+                                <h4>隱私與安全</h4>
+                                <p class="text-secondary">7 個教學資源</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最新教學資源 -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h3 class="mb-0">最新教學資源</h3>
+                        <a href="#" class="link">查看全部 →</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 40%">教學主題</th>
+                                <th style="width: 15%">資源類型</th>
+                                <th style="width: 15%">適用角色</th>
+                                <th style="width: 15%">發布日期</th>
+                                <th style="width: 15%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="flex align-center">
+                                        <span style="font-size: 24px; margin-right: 12px;">📹</span>
+                                        <div>
+                                            <div style="font-weight: 500;">AI輔助決策系統功能更新介紹</div>
+                                            <div class="text-secondary">了解最新版本的AI預測模型與決策建議功能</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>視頻教學</td>
+                                <td>醫師、護理師</td>
+                                <td>2025/03/18</td>
+                                <td><button class="btn btn-sm btn-outline">觀看</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex align-center">
+                                        <span style="font-size: 24px; margin-right: 12px;">📝</span>
+                                        <div>
+                                            <div style="font-weight: 500;">數據分析報表導出與格式說明</div>
+                                            <div class="text-secondary">如何導出患者數據以及選擇適合的格式</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>文字指南</td>
+                                <td>研究人員</td>
+                                <td>2025/03/15</td>
+                                <td><button class="btn btn-sm btn-outline">閱讀</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex align-center">
+                                        <span style="font-size: 24px; margin-right: 12px;">📋</span>
+                                        <div>
+                                            <div style="font-weight: 500;">遠距諮詢預約流程與最佳實踐</div>
+                                            <div class="text-secondary">如何設置與管理遠距諮詢以提高使用效率</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>操作指南</td>
+                                <td>全部角色</td>
+                                <td>2025/03/10</td>
+                                <td><button class="btn btn-sm btn-outline">閱讀</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex align-center">
+                                        <span style="font-size: 24px; margin-right: 12px;">🎓</span>
+                                        <div>
+                                            <div style="font-weight: 500;">患者風險評估完整指南</div>
+                                            <div class="text-secondary">詳細了解如何使用平台評估患者風險與處理警示</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>互動課程</td>
+                                <td>醫師</td>
+                                <td>2025/03/05</td>
+                                <td><button class="btn btn-sm btn-outline">開始課程</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex align-center">
+                                        <span style="font-size: 24px; margin-right: 12px;">📹</span>
+                                        <div>
+                                            <div style="font-weight: 500;">系統權限管理與用戶設定</div>
+                                            <div class="text-secondary">管理員如何設定與管理用戶權限</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>視頻教學</td>
+                                <td>管理員</td>
+                                <td>2025/03/01</td>
+                                <td><button class="btn btn-sm btn-outline">觀看</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 常見問題 -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">常見問題</h3>
+                </div>
+                <div class="card-body">
+                    <div class="accordion">
+                        <div class="accordion-item" style="border-bottom: 1px solid #dadce0; padding: 16px 0;">
+                            <div class="accordion-header"
+                                style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                                <h4 class="mb-0">如何重置我的平台密碼？</h4>
+                                <span style="font-size: 20px;">+</span>
+                            </div>
+                            <div class="accordion-content" style="display: none; padding-top: 12px;">
+                                <p>您可以通過以下步驟重置密碼：</p>
+                                <ol>
+                                    <li>在登入頁面點擊「忘記密碼」</li>
+                                    <li>輸入您的註冊電子郵件地址</li>
+                                    <li>您將收到一封包含重置鏈接的電子郵件</li>
+                                    <li>點擊鏈接並設置新密碼</li>
+                                </ol>
+                                <p>若未收到電子郵件，請檢查垃圾郵件資料夾或聯絡系統管理員。</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" style="border-bottom: 1px solid #dadce0; padding: 16px 0;">
+                            <div class="accordion-header"
+                                style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                                <h4 class="mb-0">如何導出患者數據進行研究分析？</h4>
+                                <span style="font-size: 20px;">+</span>
+                            </div>
+                            <div class="accordion-content" style="display: none; padding-top: 12px;">
+                                <p>要導出患者數據，您需要：</p>
+                                <ol>
+                                    <li>進入「數據分析與報表中心」</li>
+                                    <li>點擊「研究數據導出」區塊</li>
+                                    <li>選擇需要的數據類型與時間範圍</li>
+                                    <li>填寫導出目的說明</li>
+                                    <li>選擇輸出格式（CSV、Excel、SPSS等）</li>
+                                    <li>點擊「導出數據」</li>
+                                </ol>
+                                <p>注意：所有導出的數據都會自動去識別化，以保護患者隱私。</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" style="border-bottom: 1px solid #dadce0; padding: 16px 0;">
+                            <div class="accordion-header"
+                                style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                                <h4 class="mb-0">如何處理患者上傳的異常數據與警示？</h4>
+                                <span style="font-size: 20px;">+</span>
+                            </div>
+                            <div class="accordion-content" style="display: none; padding-top: 12px;">
+                                <p>處理警示的標準流程如下：</p>
+                                <ol>
+                                    <li>在儀表板或警示管理頁面查看待處理警示</li>
+                                    <li>點擊警示卡片或列表項進入詳情</li>
+                                    <li>檢查患者數據與症狀描述</li>
+                                    <li>使用AI輔助決策系統獲取建議（可選）</li>
+                                    <li>選擇適當的處理方式：
+                                        <ul>
+                                            <li>標記為已閱覽</li>
+                                            <li>安排遠距諮詢</li>
+                                            <li>記錄臨床決策與處理意見</li>
+                                            <li>提高或降低患者風險等級</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="accordion-item" style="border-bottom: 1px solid #dadce0; padding: 16px 0;">
+                            <div class="accordion-header"
+                                style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                                <h4 class="mb-0">平台支援哪些瀏覽器？</h4>
+                                <span style="font-size: 20px;">+</span>
+                            </div>
+                            <div class="accordion-content" style="display: none; padding-top: 12px;">
+                                <p>本平台支援以下瀏覽器的最新版本：</p>
+                                <ul>
+                                    <li>Google Chrome</li>
+                                    <li>Microsoft Edge</li>
+                                    <li>Mozilla Firefox</li>
+                                    <li>Apple Safari</li>
+                                </ul>
+                                <p>為獲得最佳使用體驗，建議使用 Google Chrome 或 Microsoft Edge 的最新版本。</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" style="padding: 16px 0;">
+                            <div class="accordion-header"
+                                style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                                <h4 class="mb-0">我的問題沒有在此列出，如何獲取支援？</h4>
+                                <span style="font-size: 20px;">+</span>
+                            </div>
+                            <div class="accordion-content" style="display: none; padding-top: 12px;">
+                                <p>如果您的問題沒有在常見問題中列出，您可以：</p>
+                                <ul>
+                                    <li>點擊右下角的「支援」圖標，與技術支援團隊聊天</li>
+                                    <li>發送電子郵件至 <a
+                                            href="mailto:support@thyroid-platform.tw">support@thyroid-platform.tw</a>
+                                    </li>
+                                    <li>在系統設定頁面提交意見回饋</li>
+                                    <li>撥打技術支援熱線：(02) 2345-6789，服務時間為週一至週五 9:00-18:00</li>
+                                </ul>
+                                <p>我們的團隊將在 24 小時內回覆您的問題。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 頁腳 -->
+    <div id="footer-component"></div>
+
+    <!-- 腳本 -->
+    <script>
+        // 載入共用組件
+        document.addEventListener('DOMContentLoaded', function () {
+            // 這裡假設共用組件已經通過某種方式載入
+            // 實際實現中，可能需要使用AJAX或其他方式載入組件
+            document.getElementById('header-component').innerHTML = '<!-- 頭部組件將在這裡加載 -->';
+            document.getElementById('sidebar-component').innerHTML = '<!-- 側邊欄組件將在這裡加載 -->';
+            document.getElementById('footer-component').innerHTML = '<!-- 頁腳組件將在這裡加載 -->';
+
+            // 手風琴功能實現
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const isVisible = content.style.display === 'block';
+
+                    // 隱藏所有內容
+                    document.querySelectorAll('.accordion-content').forEach(item => {
+                        item.style.display = 'none';
+                    });
+
+                    // 重置所有加號
+                    document.querySelectorAll('.accordion-header span').forEach(span => {
+                        span.textContent = '+';
+                    });
+
+                    // 如果點擊的內容當前不可見，則顯示它
+                    if (!isVisible) {
+                        content.style.display = 'block';
+                        header.querySelector('span').textContent = '−';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系統設定與管理 - 甲狀腺消融治療智慧追蹤平台</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- 引入共用組件 -->
+    <div id="header-component"></div>
+    <div id="sidebar-component"></div>
+
+    <div class="container">
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <div class="section-header">
+                <h1>系統設定與管理</h1>
+            </div>
+
+            <!-- 系統設定選項卡 -->
+            <div class="card mb-3">
+                <div class="tabs" style="border-bottom: 1px solid #dadce0; padding: 0 16px;">
+                    <button class="btn"
+                        style="margin-right: 16px; border-bottom: 2px solid #4285F4; border-radius: 0; padding: 16px 8px;">個人設定</button>
+                    <button class="btn"
+                        style="margin-right: 16px; border-bottom: none; border-radius: 0; padding: 16px 8px; color: #5f6368;">用戶管理</button>
+                    <button class="btn"
+                        style="margin-right: 16px; border-bottom: none; border-radius: 0; padding: 16px 8px; color: #5f6368;">權限設定</button>
+                    <button class="btn"
+                        style="margin-right: 16px; border-bottom: none; border-radius: 0; padding: 16px 8px; color: #5f6368;">系統配置</button>
+                    <button class="btn"
+                        style="margin-right: 16px; border-bottom: none; border-radius: 0; padding: 16px 8px; color: #5f6368;">日誌與稽核</button>
+                </div>
+
+                <!-- 個人設定頁面 -->
+                <div class="tab-content" style="padding: 24px;">
+                    <div class="grid grid-2" style="gap: 32px;">
+                        <!-- 個人資料 -->
+                        <div>
+                            <h3>個人資料</h3>
+                            <p class="mb-3">您可以修改您的個人資料與設定偏好</p>
+
+                            <div class="flex align-center mb-3">
+                                <img src="https://via.placeholder.com/80" alt="使用者頭像"
+                                    style="border-radius: 50%; margin-right: 16px;">
+                                <div>
+                                    <button class="btn btn-outline btn-sm">更換頭像</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">姓名</label>
+                                <input type="text" class="form-control" value="王大明">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">職稱</label>
+                                <input type="text" class="form-control" value="主治醫師">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">科別</label>
+                                <input type="text" class="form-control" value="甲狀腺外科">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">專業簡介 (在患者APP中顯示)</label>
+                                <textarea class="form-control"
+                                    rows="3">甲狀腺疾病診療專家，專精於甲狀腺微創消融治療。曾於美國約翰霍普金斯醫院進修，回國後致力於推廣甲狀腺微創治療技術。</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">聯絡電話</label>
+                                <input type="tel" class="form-control" value="0912-345-678">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">電子郵件</label>
+                                <input type="email" class="form-control" value="wang.doctor@hospital.tw">
+                            </div>
+
+                            <div class="mt-3">
+                                <button class="btn btn-primary">儲存變更</button>
+                            </div>
+                        </div>
+
+                        <!-- 系統偏好設定 -->
+                        <div>
+                            <h3>系統偏好設定</h3>
+                            <p class="mb-3">自訂您的平台體驗與通知設定</p>
+
+                            <h4 class="mt-3">顯示偏好</h4>
+                            <div class="form-group">
+                                <label class="form-label">介面主題</label>
+                                <select class="form-control">
+                                    <option>淺色主題</option>
+                                    <option>深色主題</option>
+                                    <option>跟隨系統</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">首頁預設視圖</label>
+                                <select class="form-control">
+                                    <option>儀表板</option>
+                                    <option>患者列表</option>
+                                    <option>待處理警示</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">顯示密度</label>
+                                <select class="form-control">
+                                    <option>標準</option>
+                                    <option>緊湊</option>
+                                    <option>寬鬆</option>
+                                </select>
+                            </div>
+
+                            <h4 class="mt-3">通知偏好</h4>
+                            <div class="form-group">
+                                <label class="form-checkbox">
+                                    <input type="checkbox" checked> 接收高風險警示通知
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-checkbox">
+                                    <input type="checkbox" checked> 接收中風險警示通知
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-checkbox">
+                                    <input type="checkbox"> 接收低風險警示通知
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-checkbox">
+                                    <input type="checkbox" checked> 接收患者新回報提醒
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-checkbox">
+                                    <input type="checkbox" checked> 接收遠距諮詢預約提醒
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">通知方式</label>
+                                <select class="form-control">
+                                    <option>平台內通知 + 電子郵件</option>
+                                    <option>僅平台內通知</option>
+                                    <option>平台通知 + 電子郵件 + 簡訊</option>
+                                </select>
+                            </div>
+
+                            <div class="mt-3">
+                                <button class="btn btn-primary">儲存偏好設定</button>
+                                <button class="btn btn-outline ml-2">重置為預設值</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 安全設定 -->
+                    <div class="mt-4">
+                        <h3>安全設定</h3>
+                        <div class="card" style="box-shadow: none; background-color: #f8f9fa;">
+                            <div class="grid grid-2" style="gap: 24px;">
+                                <div>
+                                    <h4>更改密碼</h4>
+                                    <div class="form-group">
+                                        <label class="form-label">目前密碼</label>
+                                        <input type="password" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">新密碼</label>
+                                        <input type="password" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">確認新密碼</label>
+                                        <input type="password" class="form-control">
+                                    </div>
+                                    <button class="btn btn-primary">更新密碼</button>
+                                </div>
+                                <div>
+                                    <h4>雙因素認證</h4>
+                                    <p>設定雙因素認證以加強帳戶安全</p>
+                                    <div class="mt-3 mb-3" style="display: flex; align-items: center;">
+                                        <div
+                                            style="width: 50px; height: 50px; background-color: #4285F4; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; margin-right: 16px;">
+                                            <span style="font-size: 24px;">🔒</span>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 500; font-size: 16px;">雙因素認證</div>
+                                            <div style="color: #5f6368;">已啟用</div>
+                                        </div>
+                                        <button class="btn btn-outline ml-auto">管理設定</button>
+                                    </div>
+                                    <h4 class="mt-4">登入記錄</h4>
+                                    <p>檢視您的最近登入活動</p>
+                                    <button class="btn btn-outline">查看登入記錄</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 用戶管理標籤頁面 (預設隱藏) -->
+            <div class="card mb-3" style="display: none;">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h3 class="mb-0">用戶管理</h3>
+                        <button class="btn btn-primary">新增使用者</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="flex align-center mb-3" style="gap: 10px;">
+                        <input type="text" class="form-control" placeholder="搜尋使用者..." style="max-width: 300px;">
+                        <select class="form-control" style="max-width: 200px;">
+                            <option>所有角色</option>
+                            <option>醫師</option>
+                            <option>護理師</option>
+                            <option>研究人員</option>
+                            <option>管理員</option>
+                        </select>
+                        <select class="form-control" style="max-width: 200px;">
+                            <option>所有狀態</option>
+                            <option>啟用</option>
+                            <option>停用</option>
+                        </select>
+                        <button class="btn btn-outline">搜尋</button>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">#</th>
+                                <th style="width: 20%">姓名</th>
+                                <th style="width: 15%">角色</th>
+                                <th style="width: 20%">部門/科別</th>
+                                <th style="width: 15%">最後登入</th>
+                                <th style="width: 10%">狀態</th>
+                                <th style="width: 15%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 使用者列表內容會在這裡顯示 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 其他標籤頁內容 -->
+
+            <!-- 系統資訊卡片 -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3 class="mb-0">系統資訊</h3>
+                </div>
+                <div class="card-body">
+                    <div class="grid grid-3">
+                        <div>
+                            <h4>版本資訊</h4>
+                            <div class="mt-2">
+                                <p><strong>當前版本：</strong> 1.2.0</p>
+                                <p><strong>發布日期：</strong> 2025/03/15</p>
+                                <p><strong>最近更新：</strong> 2025/03/20</p>
+                                <button class="btn btn-outline mt-2">查看更新日誌</button>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>系統狀態</h4>
+                            <div class="mt-2">
+                                <p><strong>系統狀態：</strong> <span class="text-success">正常運行</span></p>
+                                <p><strong>資料庫連接：</strong> <span class="text-success">正常</span></p>
+                                <p><strong>API服務：</strong> <span class="text-success">正常</span></p>
+                                <button class="btn btn-outline mt-2">查看詳細狀態</button>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>支援與協助</h4>
+                            <div class="mt-2">
+                                <p><strong>技術支援：</strong> <a
+                                        href="mailto:support@thyroid-platform.tw">support@thyroid-platform.tw</a></p>
+                                <p><strong>文件中心：</strong> <a href="#">查看使用說明</a></p>
+                                <p><strong>教學影片：</strong> <a href="#">觀看教學</a></p>
+                                <button class="btn btn-outline mt-2">意見回饋</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 系統特色使用說明 -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">系統特色與小技巧</h3>
+                </div>
+                <div class="card-body">
+                    <div class="grid grid-3" style="gap: 16px;">
+                        <div class="card" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="padding: 16px;">
+                                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                                    <div
+                                        style="width: 40px; height: 40px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
+                                        <span style="font-size: 20px;">⚡</span>
+                                    </div>
+                                    <h4 class="mb-0">快捷鍵</h4>
+                                </div>
+                                <p>使用鍵盤快捷鍵加速您的工作流程：</p>
+                                <ul style="padding-left: 20px;">
+                                    <li>Alt + D：轉到儀表板</li>
+                                    <li>Alt + P：患者列表</li>
+                                    <li>Alt + A：警示管理</li>
+                                    <li>Alt + S：搜尋</li>
+                                </ul>
+                                <a href="#" class="btn btn-outline btn-sm mt-2">查看所有快捷鍵</a>
+                            </div>
+                        </div>
+                        <div class="card" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="padding: 16px;">
+                                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                                    <div
+                                        style="width: 40px; height: 40px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
+                                        <span style="font-size: 20px;">🔗</span>
+                                    </div>
+                                    <h4 class="mb-0">整合功能</h4>
+                                </div>
+                                <p>了解如何將平台與其他系統整合：</p>
+                                <ul style="padding-left: 20px;">
+                                    <li>HIS系統連接</li>
+                                    <li>PACS影像整合</li>
+                                    <li>電子病歷同步</li>
+                                    <li>行動裝置通知</li>
+                                </ul>
+                                <a href="#" class="btn btn-outline btn-sm mt-2">設定整合功能</a>
+                            </div>
+                        </div>
+                        <div class="card" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="padding: 16px;">
+                                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                                    <div
+                                        style="width: 40px; height: 40px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
+                                        <span style="font-size: 20px;">🎓</span>
+                                    </div>
+                                    <h4 class="mb-0">新功能導覽</h4>
+                                </div>
+                                <p>最新版本的功能更新：</p>
+                                <ul style="padding-left: 20px;">
+                                    <li>AI輔助決策優化</li>
+                                    <li>族群分析工具</li>
+                                    <li>FHIR資料匯出</li>
+                                    <li>視訊諮詢錄影功能</li>
+                                </ul>
+                                <a href="#" class="btn btn-outline btn-sm mt-2">開始功能導覽</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 頁腳 -->
+    <div id="footer-component"></div>
+
+    <!-- 腳本 -->
+    <script>
+        // 載入共用組件
+        document.addEventListener('DOMContentLoaded', function () {
+            // 這裡假設共用組件已經通過某種方式載入
+            // 實際實現中，可能需要使用AJAX或其他方式載入組件
+            document.getElementById('header-component').innerHTML = '<!-- 頭部組件將在這裡加載 -->';
+            document.getElementById('sidebar-component').innerHTML = '<!-- 側邊欄組件將在這裡加載 -->';
+            document.getElementById('footer-component').innerHTML = '<!-- 頁腳組件將在這裡加載 -->';
+        });
+    </script>
+</body>
+
+</html>

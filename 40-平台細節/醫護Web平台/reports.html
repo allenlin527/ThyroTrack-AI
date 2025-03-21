@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>醫療報告 - 甲狀腺消融治療智慧追蹤平台</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- 引入共用組件 -->
+    <div id="header-component"></div>
+    <div id="sidebar-component"></div>
+
+    <div class="container">
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <div class="section-header">
+                <div class="flex justify-between align-center">
+                    <h1>醫療報告</h1>
+                    <div class="flex align-center">
+                        <button class="btn btn-outline mr-2">匯出數據</button>
+                        <button class="btn btn-primary">
+                            <i class="icon-plus"></i> 建立新報告
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 報告概況卡片 -->
+            <div class="grid grid-4 mb-3" style="gap: 16px;">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">283</h3>
+                                <p class="text-muted mb-0">總報告數</p>
+                            </div>
+                            <div class="card-icon card-icon-primary">
+                                <i class="icon-file"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">24</h3>
+                                <p class="text-muted mb-0">本月新報告</p>
+                            </div>
+                            <div class="card-icon card-icon-success">
+                                <i class="icon-chart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">12</h3>
+                                <p class="text-muted mb-0">待審核報告</p>
+                            </div>
+                            <div class="card-icon card-icon-warning">
+                                <i class="icon-time"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">9</h3>
+                                <p class="text-muted mb-0">異常數據報告</p>
+                            </div>
+                            <div class="card-icon card-icon-danger">
+                                <i class="icon-alert"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 搜尋與過濾區域 -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="grid grid-4" style="gap: 16px;">
+                        <div>
+                            <label for="report-search" class="form-label">搜尋報告</label>
+                            <div class="flex align-center">
+                                <input type="text" id="report-search" class="form-control"
+                                    placeholder="報告ID、患者名稱、類型...">
+                                <button class="btn btn-icon ml-1">
+                                    <i class="icon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="report-type" class="form-label">報告類型</label>
+                            <select id="report-type" class="form-control">
+                                <option value="">全部類型</option>
+                                <option value="ultrasound">超音波報告</option>
+                                <option value="lab">實驗室檢查</option>
+                                <option value="followup">追蹤評估</option>
+                                <option value="treatment">治療報告</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="date-range" class="form-label">日期範圍</label>
+                            <div class="flex align-center">
+                                <input type="date" id="date-from" class="form-control" style="width: 50%;">
+                                <span class="mx-2">至</span>
+                                <input type="date" id="date-to" class="form-control" style="width: 50%;">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="status-filter" class="form-label">狀態</label>
+                            <select id="status-filter" class="form-control">
+                                <option value="">全部狀態</option>
+                                <option value="completed">已完成</option>
+                                <option value="pending">待審核</option>
+                                <option value="draft">草稿</option>
+                                <option value="urgent">急需處理</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between align-center mt-3">
+                        <div class="flex align-center">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="icon-filter"></i> 進階篩選
+                            </button>
+                        </div>
+                        <div class="flex align-center">
+                            <label class="mr-2">排序：</label>
+                            <select class="form-control form-control-sm" style="width: auto;">
+                                <option value="newest">最新優先</option>
+                                <option value="oldest">最舊優先</option>
+                                <option value="name">患者姓名</option>
+                                <option value="status">狀態優先</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 報告列表 -->
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px;">
+                                        <input type="checkbox" id="select-all">
+                                    </th>
+                                    <th>報告資訊</th>
+                                    <th>患者資訊</th>
+                                    <th>報告類型</th>
+                                    <th>日期</th>
+                                    <th>狀態</th>
+                                    <th>處理者</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 治療報告 - 急需處理 -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="report-select">
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="#" class="report-title">射頻消融術後併發症評估</a>
+                                            <div class="report-id">ID: R30045</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="flex align-center">
+                                            <div class="avatar avatar-sm mr-2">
+                                                <img src="assets/patient-avatar.png" alt="陳小明">
+                                            </div>
+                                            <div>
+                                                <a href="patient-details.html" class="patient-name">陳小明</a>
+                                                <div class="patient-id">ID: P12345</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-danger">併發症評估</span>
+                                    </td>
+                                    <td>2025/03/21</td>
+                                    <td>
+                                        <span class="badge badge-danger">急需處理</span>
+                                    </td>
+                                    <td>王大明醫師</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm mr-1">處理</button>
+                                            <button class="btn btn-icon btn-sm mr-1" title="查看報告">
+                                                <i class="icon-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="下載報告">
+                                                <i class="icon-download"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- 超音波報告 - 待審核 -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="report-select">
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="#" class="report-title">甲狀腺消融效果評估超音波</a>
+                                            <div class="report-id">ID: R30044</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="flex align-center">
+                                            <div class="avatar avatar-sm mr-2">
+                                                <img src="assets/patient-avatar-2.png" alt="林美玲">
+                                            </div>
+                                            <div>
+                                                <a href="patient-details.html" class="patient-name">林美玲</a>
+                                                <div class="patient-id">ID: P12346</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-info">超音波</span>
+                                    </td>
+                                    <td>2025/03/20</td>
+                                    <td>
+                                        <span class="badge badge-warning">待審核</span>
+                                    </td>
+                                    <td>劉超音醫師</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm mr-1">審核</button>
+                                            <button class="btn btn-icon btn-sm mr-1" title="查看報告">
+                                                <i class="icon-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="下載報告">
+                                                <i class="icon-download"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- 治療報告 - 已完成 -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="report-select">
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="#" class="report-title">射頻消融治療術後報告</a>
+                                            <div class="report-id">ID: R30043</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="flex align-center">
+                                            <div class="avatar avatar-sm mr-2">
+                                                <img src="assets/patient-avatar-3.png" alt="張大年">
+                                            </div>
+                                            <div>
+                                                <a href="patient-details.html" class="patient-name">張大年</a>
+                                                <div class="patient-id">ID: P12347</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-primary">射頻消融治療</span>
+                                    </td>
+                                    <td>2025/03/19</td>
+                                    <td>
+                                        <span class="badge badge-success">已完成</span>
+                                    </td>
+                                    <td>王大明醫師</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon btn-sm mr-1" title="查看報告">
+                                                <i class="icon-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm mr-1" title="下載報告">
+                                                <i class="icon-download"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="分享報告">
+                                                <i class="icon-share"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- 實驗室報告 - 已完成 -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="report-select">
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="#" class="report-title">甲狀腺功能血液檢查報告</a>
+                                            <div class="report-id">ID: R30042</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="flex align-center">
+                                            <div class="avatar avatar-sm mr-2">
+                                                <img src="assets/patient-avatar-4.png" alt="王小菲">
+                                            </div>
+                                            <div>
+                                                <a href="patient-details.html" class="patient-name">王小菲</a>
+                                                <div class="patient-id">ID: P12348</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-secondary">血液檢查</span>
+                                    </td>
+                                    <td>2025/03/18</td>
+                                    <td>
+                                        <span class="badge badge-success">已完成</span>
+                                    </td>
+                                    <td>張小華醫師</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon btn-sm mr-1" title="查看報告">
+                                                <i class="icon-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm mr-1" title="下載報告">
+                                                <i class="icon-download"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="分享報告">
+                                                <i class="icon-share"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- 追蹤評估報告 - 草稿 -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="report-select">
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="#" class="report-title">一個月術後追蹤評估</a>
+                                            <div class="report-id">ID: R30041</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="flex align-center">
+                                            <div class="avatar avatar-sm mr-2">
+                                                <img src="assets/patient-avatar-3.png" alt="張大年">
+                                            </div>
+                                            <div>
+                                                <a href="patient-details.html" class="patient-name">張大年</a>
+                                                <div class="patient-id">ID: P12347</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-success">追蹤評估</span>
+                                    </td>
+                                    <td>2025/03/18</td>
+                                    <td>
+                                        <span class="badge badge-secondary">草稿</span>
+                                    </td>
+                                    <td>王大明醫師</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm mr-1">繼續編輯</button>
+                                            <button class="btn btn-icon btn-sm mr-1" title="查看報告">
+                                                <i class="icon-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="刪除草稿">
+                                                <i class="icon-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- 分頁 -->
+                <div class="card-footer">
+                    <div class="flex justify-between align-center">
+                        <div>
+                            顯示 1 至 5 筆，共 283 筆記錄
+                        </div>
+                        <div class="pagination">
+                            <button class="btn btn-icon btn-sm" disabled>
+                                <i class="icon-chevron-left"></i>
+                            </button>
+                            <button class="btn btn-sm active">1</button>
+                            <button class="btn btn-sm">2</button>
+                            <button class="btn btn-sm">3</button>
+                            <button class="btn btn-sm">4</button>
+                            <button class="btn btn-sm">5</button>
+                            <button class="btn btn-icon btn-sm">
+                                <i class="icon-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 報告統計圖表 -->
+            <div class="grid grid-2 mt-3" style="gap: 16px;">
+                <!-- 報告類型分布 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex justify-between align-center">
+                            <h3 class="mb-0">報告類型分布</h3>
+                            <select class="form-control form-control-sm" style="width: auto;">
+                                <option>最近30天</option>
+                                <option>本季度</option>
+                                <option>今年</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div
+                            style="height: 250px; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                            報告類型分布圓餅圖
+                        </div>
+                        <div class="flex justify-around mt-3">
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #4285F4; border-radius: 50%; margin-right: 4px;"></span>
+                                <span>射頻消融治療 (32%)</span>
+                            </div>
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #34A853; border-radius: 50%; margin-right: 4px;"></span>
+                                <span>追蹤評估 (28%)</span>
+                            </div>
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #FBBC05; border-radius: 50%; margin-right: 4px;"></span>
+                                <span>超音波 (20%)</span>
+                            </div>
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #EA4335; border-radius: 50%; margin-right: 4px;"></span>
+                                <span>其他 (20%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 報告趨勢 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex justify-between align-center">
+                            <h3 class="mb-0">報告生成趨勢</h3>
+                            <div class="flex align-center">
+                                <button class="btn btn-outline btn-sm">
+                                    <i class="icon-download"></i> 匯出
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div
+                            style="height: 250px; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                            每月報告數量折線圖
+                        </div>
+                        <div class="flex justify-between mt-3">
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #4285F4; border-radius: 2px; margin-right: 4px;"></span>
+                                <span>本年度</span>
+                            </div>
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; border: 1px dashed #4285F4; border-radius: 2px; margin-right: 4px;"></span>
+                                <span>去年同期</span>
+                            </div>
+                            <div>
+                                <span class="text-success">+12.5%</span> 相較去年同期
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 頁腳 -->
+    <div id="footer-component"></div>
+
+    <!-- 腳本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 載入共用組件
+            fetch('components.html')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+
+                    document.getElementById('header-component').innerHTML = doc.getElementById('header-template').outerHTML;
+                    document.getElementById('sidebar-component').innerHTML = doc.getElementById('sidebar-template').outerHTML;
+                    document.getElementById('footer-component').innerHTML = doc.getElementById('footer-template').outerHTML;
+                });
+        });
+    </script>
+</body>
+
+</html>

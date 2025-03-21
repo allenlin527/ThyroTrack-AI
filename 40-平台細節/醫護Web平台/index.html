@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>儀表板首頁 - 甲狀腺消融治療智慧追蹤平台</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- 引入共用組件 -->
+    <div id="header-component"></div>
+    <div id="sidebar-component"></div>
+
+    <div class="container">
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <div class="section-header">
+                <h1>儀表板</h1>
+                <span>歡迎回來，王大明醫師！今天是 2025年3月21日 星期五</span>
+            </div>
+
+            <!-- 待辦事項摘要 -->
+            <div class="card mb-3">
+                <div class="grid grid-4">
+                    <div style="padding: 20px; text-align: center;">
+                        <div style="font-size: 36px; font-weight: bold; color: #EA4335;">8</div>
+                        <div>待處理警示</div>
+                        <button class="btn btn-outline btn-sm mt-2">查看警示</button>
+                    </div>
+                    <div style="padding: 20px; text-align: center;">
+                        <div style="font-size: 36px; font-weight: bold; color: #4285F4;">12</div>
+                        <div>今日追蹤患者</div>
+                        <button class="btn btn-outline btn-sm mt-2">查看患者</button>
+                    </div>
+                    <div style="padding: 20px; text-align: center;">
+                        <div style="font-size: 36px; font-weight: bold; color: #FBBC05;">4</div>
+                        <div>待排遠距諮詢</div>
+                        <button class="btn btn-outline btn-sm mt-2">安排諮詢</button>
+                    </div>
+                    <div style="padding: 20px; text-align: center;">
+                        <div style="font-size: 36px; font-weight: bold; color: #34A853;">3</div>
+                        <div>新增患者報告</div>
+                        <button class="btn btn-outline btn-sm mt-2">檢視報告</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最近警示與行動項目 -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h3 class="mb-0">最近警示</h3>
+                        <a href="alerts.html" class="link">查看所有警示 →</a>
+                    </div>
+                </div>
+                <div style="padding: 0 16px;">
+                    <div class="grid grid-3" style="gap: 16px;">
+                        <div class="card"
+                            style="box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #EA4335;">
+                            <div style="padding: 16px;">
+                                <div class="flex justify-between mb-2">
+                                    <span class="badge badge-danger">高風險警示</span>
+                                    <span style="color: #666;">10分鐘前</span>
+                                </div>
+                                <h4 class="mb-0">嚴重疼痛報告</h4>
+                                <p class="mt-1 mb-2">患者陳小明報告疼痛指數上升至9/10，且伴隨頸部明顯腫脹</p>
+                                <div class="flex align-center">
+                                    <img src="assets/patient-avatar.png" alt="患者頭像"
+                                        style="width: 24px; height: 24px; border-radius: 50%; margin-right: 8px;">
+                                    <span>陳小明 (#P12345)</span>
+                                </div>
+                                <div class="flex mt-2">
+                                    <button class="btn btn-primary btn-sm">立即處理</button>
+                                    <button class="btn btn-outline btn-sm ml-2">查看詳情</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card"
+                            style="box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #FBBC05;">
+                            <div style="padding: 16px;">
+                                <div class="flex justify-between mb-2">
+                                    <span class="badge badge-warning">中度風險</span>
+                                    <span style="color: #666;">25分鐘前</span>
+                                </div>
+                                <h4 class="mb-0">吞嚥困難加劇</h4>
+                                <p class="mt-1 mb-2">患者林美玲報告吞嚥困難程度增加，進食困難且需要液態食物</p>
+                                <div class="flex align-center">
+                                    <img src="assets/patient-avatar-2.png" alt="患者頭像"
+                                        style="width: 24px; height: 24px; border-radius: 50%; margin-right: 8px;">
+                                    <span>林美玲 (#P23456)</span>
+                                </div>
+                                <div class="flex mt-2">
+                                    <button class="btn btn-primary btn-sm">處理警示</button>
+                                    <button class="btn btn-outline btn-sm ml-2">查看詳情</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card"
+                            style="box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #FBBC05;">
+                            <div style="padding: 16px;">
+                                <div class="flex justify-between mb-2">
+                                    <span class="badge badge-warning">中度風險</span>
+                                    <span style="color: #666;">1小時前</span>
+                                </div>
+                                <h4 class="mb-0">體溫異常上升</h4>
+                                <p class="mt-1 mb-2">患者張志明報告體溫上升至38.5°C，可能有感染跡象，需要評估</p>
+                                <div class="flex align-center">
+                                    <img src="assets/patient-avatar-3.png" alt="患者頭像"
+                                        style="width: 24px; height: 24px; border-radius: 50%; margin-right: 8px;">
+                                    <span>張志明 (#P34567)</span>
+                                </div>
+                                <div class="flex mt-2">
+                                    <button class="btn btn-primary btn-sm">處理警示</button>
+                                    <button class="btn btn-outline btn-sm ml-2">查看詳情</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 數據概覽與圖表 -->
+            <div class="grid grid-2" style="gap: 16px;">
+                <!-- 患者統計 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex justify-between align-center">
+                            <h3 class="mb-0">患者統計</h3>
+                            <select class="form-control" style="width: auto;">
+                                <option>最近30天</option>
+                                <option>最近90天</option>
+                                <option>最近180天</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid grid-2 mb-3">
+                            <div style="text-align: center;">
+                                <div style="font-size: 24px; font-weight: bold; color: #4285F4;">145</div>
+                                <div>總患者數</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 24px; font-weight: bold; color: #34A853;">18</div>
+                                <div>本月新增</div>
+                            </div>
+                        </div>
+                        <div
+                            style="height: 250px; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                            患者數量趨勢圖表
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 風險分佈 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="mb-0">患者風險分佈</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid grid-3 mb-3">
+                            <div style="text-align: center;">
+                                <div style="font-size: 24px; font-weight: bold; color: #EA4335;">12</div>
+                                <div>高風險</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 24px; font-weight: bold; color: #FBBC05;">36</div>
+                                <div>中度風險</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 24px; font-weight: bold; color: #34A853;">97</div>
+                                <div>低風險</div>
+                            </div>
+                        </div>
+                        <div
+                            style="height: 250px; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                            患者風險分佈圓餅圖
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 今日追蹤患者 -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h3 class="mb-0">今日需追蹤患者</h3>
+                        <a href="patients.html" class="link">查看所有患者 →</a>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>患者資訊</th>
+                            <th>風險等級</th>
+                            <th>手術日期 / 術後天數</th>
+                            <th>最近回報症狀</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="flex align-center">
+                                    <img src="assets/patient-avatar.png" alt="患者頭像"
+                                        style="width: 32px; height: 32px; border-radius: 50%; margin-right: 8px;">
+                                    <div>
+                                        <div>陳小明</div>
+                                        <div style="font-size: 12px; color: #666;">#P12345</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-danger">高風險</span></td>
+                            <td>
+                                <div>2025/03/15</div>
+                                <div style="font-size: 12px; color: #666;">術後 6 天</div>
+                            </td>
+                            <td>
+                                <div>疼痛: <span class="text-danger">9/10</span></div>
+                                <div>吞嚥: <span class="text-warning">6/10</span></div>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">檢視</button>
+                                <button class="btn btn-outline btn-sm">聯繫</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="flex align-center">
+                                    <img src="assets/patient-avatar-2.png" alt="患者頭像"
+                                        style="width: 32px; height: 32px; border-radius: 50%; margin-right: 8px;">
+                                    <div>
+                                        <div>林美玲</div>
+                                        <div style="font-size: 12px; color: #666;">#P23456</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-warning">中度風險</span></td>
+                            <td>
+                                <div>2025/03/10</div>
+                                <div style="font-size: 12px; color: #666;">術後 11 天</div>
+                            </td>
+                            <td>
+                                <div>疼痛: <span class="text-warning">5/10</span></div>
+                                <div>吞嚥: <span class="text-warning">7/10</span></div>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">檢視</button>
+                                <button class="btn btn-outline btn-sm">聯繫</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="flex align-center">
+                                    <img src="assets/patient-avatar-3.png" alt="患者頭像"
+                                        style="width: 32px; height: 32px; border-radius: 50%; margin-right: 8px;">
+                                    <div>
+                                        <div>張志明</div>
+                                        <div style="font-size: 12px; color: #666;">#P34567</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-warning">中度風險</span></td>
+                            <td>
+                                <div>2025/02/20</div>
+                                <div style="font-size: 12px; color: #666;">術後 29 天</div>
+                            </td>
+                            <td>
+                                <div>疼痛: <span class="text-success">2/10</span></div>
+                                <div>體溫: <span class="text-danger">38.5°C</span></div>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">檢視</button>
+                                <button class="btn btn-outline btn-sm">聯繫</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 活動與任務行事曆 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h3 class="mb-0">今日行程</h3>
+                        <a href="teleconsultation.html" class="link">查看行事曆 →</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="timeline">
+                        <div class="timeline-item"
+                            style="border-left: 3px solid #4285F4; padding-left: 20px; margin-bottom: 20px; position: relative;">
+                            <div
+                                style="position: absolute; left: -10px; top: 0; width: 16px; height: 16px; border-radius: 50%; background-color: #4285F4;">
+                            </div>
+                            <div class="flex justify-between align-center">
+                                <div>
+                                    <span class="badge badge-primary">9:30 - 10:00</span>
+                                    <span class="ml-2">遠距諮詢：陳小明</span>
+                                </div>
+                                <button class="btn btn-outline btn-sm">開始諮詢</button>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item"
+                            style="border-left: 3px solid #FBBC05; padding-left: 20px; margin-bottom: 20px; position: relative;">
+                            <div
+                                style="position: absolute; left: -10px; top: 0; width: 16px; height: 16px; border-radius: 50%; background-color: #FBBC05;">
+                            </div>
+                            <div class="flex justify-between align-center">
+                                <div>
+                                    <span class="badge badge-warning">11:00 - 12:00</span>
+                                    <span class="ml-2">治療團隊會議</span>
+                                </div>
+                                <button class="btn btn-outline btn-sm">加入會議</button>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item"
+                            style="border-left: 3px solid #34A853; padding-left: 20px; margin-bottom: 20px; position: relative;">
+                            <div
+                                style="position: absolute; left: -10px; top: 0; width: 16px; height: 16px; border-radius: 50%; background-color: #34A853;">
+                            </div>
+                            <div class="flex justify-between align-center">
+                                <div>
+                                    <span class="badge badge-success">14:30 - 15:00</span>
+                                    <span class="ml-2">遠距諮詢：張志明</span>
+                                </div>
+                                <button class="btn btn-outline btn-sm">開始諮詢</button>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item"
+                            style="border-left: 3px solid #EA4335; padding-left: 20px; position: relative;">
+                            <div
+                                style="position: absolute; left: -10px; top: 0; width: 16px; height: 16px; border-radius: 50%; background-color: #EA4335;">
+                            </div>
+                            <div class="flex justify-between align-center">
+                                <div>
+                                    <span class="badge badge-danger">16:30 - 17:30</span>
+                                    <span class="ml-2">治療成效評估報告撰寫</span>
+                                </div>
+                                <button class="btn btn-outline btn-sm">開始任務</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 頁腳 -->
+    <div id="footer-component"></div>
+
+    <!-- 腳本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 載入頭部組件
+            fetch('components.html')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+
+                    document.getElementById('header-component').innerHTML = doc.getElementById('header-template').outerHTML;
+                    document.getElementById('sidebar-component').innerHTML = doc.getElementById('sidebar-template').outerHTML;
+                    document.getElementById('footer-component').innerHTML = doc.getElementById('footer-template').outerHTML;
+                });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>數據分析與報表中心 - 甲狀腺消融治療智慧追蹤平台</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- 引入共用組件 -->
+    <div id="header-component"></div>
+    <div id="sidebar-component"></div>
+
+    <div class="container">
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <div class="section-header">
+                <h1>數據分析與報表中心</h1>
+                <div class="flex align-center">
+                    <button class="btn btn-outline mr-2">新建報表</button>
+                    <button class="btn btn-primary">匯出數據</button>
+                </div>
+            </div>
+
+            <!-- 數據儀表板 -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h3 class="mb-0">治療成效總覽</h3>
+                        <div>
+                            <select class="form-control" style="display: inline-block; width: auto;">
+                                <option>最近 30 天</option>
+                                <option>最近 90 天</option>
+                                <option>最近 180 天</option>
+                                <option>最近 365 天</option>
+                                <option>自訂範圍</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-4">
+                    <div class="card" style="box-shadow: none; background-color: #f8f9fa; margin: 10px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 36px; font-weight: bold; color: #4285F4;">156</div>
+                            <div style="color: #5f6368;">治療患者總數</div>
+                            <div style="font-size: 14px; color: #34A853; margin-top: 8px;">↑ 12% 較上期</div>
+                        </div>
+                    </div>
+                    <div class="card" style="box-shadow: none; background-color: #f8f9fa; margin: 10px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 36px; font-weight: bold; color: #34A853;">92.3%</div>
+                            <div style="color: #5f6368;">患者恢復率</div>
+                            <div style="font-size: 14px; color: #34A853; margin-top: 8px;">↑ 3.2% 較上期</div>
+                        </div>
+                    </div>
+                    <div class="card" style="box-shadow: none; background-color: #f8f9fa; margin: 10px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 36px; font-weight: bold; color: #EA4335;">4.5%</div>
+                            <div style="color: #5f6368;">併發症發生率</div>
+                            <div style="font-size: 14px; color: #34A853; margin-top: 8px;">↓ 1.8% 較上期</div>
+                        </div>
+                    </div>
+                    <div class="card" style="box-shadow: none; background-color: #f8f9fa; margin: 10px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 36px; font-weight: bold; color: #FBBC05;">18.6</div>
+                            <div style="color: #5f6368;">平均追蹤天數</div>
+                            <div style="font-size: 14px; color: #34A853; margin-top: 8px;">↑ 2.3 天 較上期</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 圖表區域 -->
+                <div class="grid grid-2" style="margin-top: 16px; padding: 0 16px 16px 16px;">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h4 class="mb-0">症狀恢復趨勢</h4>
+                        </div>
+                        <div class="chart-body"
+                            style="height: 300px; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                            症狀恢復趨勢折線圖
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h4 class="mb-0">患者分布情況</h4>
+                        </div>
+                        <div class="chart-body"
+                            style="height: 300px; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                            患者分布情況圓餅圖
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 報表管理 -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h3 class="mb-0">報表管理</h3>
+                        <div class="flex align-center">
+                            <input type="text" class="form-control" placeholder="搜索報表"
+                                style="width: 200px; margin-right: 8px;">
+                            <button class="btn btn-outline btn-sm">搜尋</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 報表類型標籤 -->
+                <div style="padding: 16px; border-bottom: 1px solid #dadce0;">
+                    <button class="btn btn-primary mr-2">全部報表</button>
+                    <button class="btn btn-outline mr-2">臨床報表</button>
+                    <button class="btn btn-outline mr-2">研究報表</button>
+                    <button class="btn btn-outline mr-2">管理報表</button>
+                    <button class="btn btn-outline">自訂報表</button>
+                </div>
+
+                <!-- 報表列表 -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%">#</th>
+                            <th style="width: 25%">報表名稱</th>
+                            <th style="width: 15%">類型</th>
+                            <th style="width: 15%">數據範圍</th>
+                            <th style="width: 15%">上次產生</th>
+                            <th style="width: 15%">產生者</th>
+                            <th style="width: 10%">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <div>甲狀腺消融治療術後恢復摘要</div>
+                                <div style="font-size: 12px; color: #666;">包含患者症狀趨勢、復原情況與治療成效</div>
+                            </td>
+                            <td><span class="badge badge-primary">臨床報表</span></td>
+                            <td>最近30天</td>
+                            <td>2025/03/18</td>
+                            <td>王大明醫師</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">產生</button>
+                                <button class="btn btn-outline btn-sm">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <div>併發症分析報告</div>
+                                <div style="font-size: 12px; color: #666;">分析術後併發症類型、頻率與風險因素</div>
+                            </td>
+                            <td><span class="badge badge-success">研究報表</span></td>
+                            <td>最近90天</td>
+                            <td>2025/03/15</td>
+                            <td>林芳如醫師</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">產生</button>
+                                <button class="btn btn-outline btn-sm">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <div>患者追蹤依從性報告</div>
+                                <div style="font-size: 12px; color: #666;">分析患者APP使用情況與依從性</div>
+                            </td>
+                            <td><span class="badge badge-warning">管理報表</span></td>
+                            <td>最近60天</td>
+                            <td>2025/03/10</td>
+                            <td>張建國醫師</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">產生</button>
+                                <button class="btn btn-outline btn-sm">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>
+                                <div>治療效果比較分析</div>
+                                <div style="font-size: 12px; color: #666;">不同術式與治療方案的效果比較</div>
+                            </td>
+                            <td><span class="badge badge-success">研究報表</span></td>
+                            <td>最近180天</td>
+                            <td>2025/03/05</td>
+                            <td>王大明醫師</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">產生</button>
+                                <button class="btn btn-outline btn-sm">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>
+                                <div>醫療團隊工作量統計</div>
+                                <div style="font-size: 12px; color: #666;">分析醫護人員工作量與效率指標</div>
+                            </td>
+                            <td><span class="badge badge-warning">管理報表</span></td>
+                            <td>最近30天</td>
+                            <td>2025/03/01</td>
+                            <td>系統管理員</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">產生</button>
+                                <button class="btn btn-outline btn-sm">查看</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- 分頁控制 -->
+                <div class="flex justify-between align-center" style="padding: 16px;">
+                    <div>
+                        顯示 1 至 5 筆，共 18 筆
+                    </div>
+                    <div class="flex align-center">
+                        <button class="btn btn-outline btn-sm mr-1" disabled>上一頁</button>
+                        <button class="btn btn-primary btn-sm mr-1">1</button>
+                        <button class="btn btn-outline btn-sm mr-1">2</button>
+                        <button class="btn btn-outline btn-sm mr-1">3</button>
+                        <button class="btn btn-outline btn-sm mr-1">4</button>
+                        <button class="btn btn-outline btn-sm">下一頁</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 資料分析工具 -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3 class="mb-0">資料分析工具</h3>
+                </div>
+                <div class="grid grid-3" style="padding: 16px;">
+                    <div class="card" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s;">
+                        <div style="text-align: center; padding: 24px 16px;">
+                            <div
+                                style="width: 64px; height: 64px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px;">
+                                <div style="font-size: 32px;">📊</div>
+                            </div>
+                            <h4>族群分析</h4>
+                            <p style="color: #5f6368; margin-bottom: 16px;">比較不同患者族群的術後恢復情況與治療效果</p>
+                            <button class="btn btn-primary">開始分析</button>
+                        </div>
+                    </div>
+                    <div class="card" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s;">
+                        <div style="text-align: center; padding: 24px 16px;">
+                            <div
+                                style="width: 64px; height: 64px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px;">
+                                <div style="font-size: 32px;">🔍</div>
+                            </div>
+                            <h4>預測模型評估</h4>
+                            <p style="color: #5f6368; margin-bottom: 16px;">評估AI預測模型的準確性與臨床效益</p>
+                            <button class="btn btn-primary">開始分析</button>
+                        </div>
+                    </div>
+                    <div class="card" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s;">
+                        <div style="text-align: center; padding: 24px 16px;">
+                            <div
+                                style="width: 64px; height: 64px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px;">
+                                <div style="font-size: 32px;">📈</div>
+                            </div>
+                            <h4>趨勢分析器</h4>
+                            <p style="color: #5f6368; margin-bottom: 16px;">分析患者症狀、數據的長期變化趨勢</p>
+                            <button class="btn btn-primary">開始分析</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 研究數據匯出 -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">研究數據匯出</h3>
+                </div>
+                <div class="card-body">
+                    <div class="flex justify-between align-center mb-3">
+                        <p>匯出匿名化數據用於研究分析，支援多種常用格式。所有數據均經過去識別化處理，符合隱私保護規範。</p>
+                        <div>
+                            <button class="btn btn-outline">查看匯出記錄</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-3">
+                        <div class="form-group">
+                            <label class="form-label">數據類型</label>
+                            <select class="form-control">
+                                <option>術後症狀數據</option>
+                                <option>患者回報數據</option>
+                                <option>臨床處置記錄</option>
+                                <option>AI預測結果</option>
+                                <option>綜合數據集</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">時間範圍</label>
+                            <select class="form-control">
+                                <option>最近30天</option>
+                                <option>最近90天</option>
+                                <option>最近180天</option>
+                                <option>最近一年</option>
+                                <option>全部數據</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">輸出格式</label>
+                            <select class="form-control">
+                                <option>CSV</option>
+                                <option>Excel (XLSX)</option>
+                                <option>JSON</option>
+                                <option>FHIR Bundle</option>
+                                <option>REDCap XML</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">匯出說明（用途與範圍）</label>
+                        <textarea class="form-control" rows="3" placeholder="請簡要說明數據匯出的用途與研究範圍..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-checkbox">
+                            <input type="checkbox"> 我確認此次匯出已獲得適當授權，並將遵循相關法規與研究倫理
+                        </label>
+                    </div>
+
+                    <div class="mt-3">
+                        <button class="btn btn-primary">開始匯出</button>
+                        <button class="btn btn-outline ml-2">儲存匯出設定</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 頁腳 -->
+    <div id="footer-component"></div>
+
+    <!-- 腳本 -->
+    <script>
+        // 載入共用組件
+        document.addEventListener('DOMContentLoaded', function () {
+            // 這裡假設共用組件已經通過某種方式載入
+            // 實際實現中，可能需要使用AJAX或其他方式載入組件
+            document.getElementById('header-component').innerHTML = '<!-- 頭部組件將在這裡加載 -->';
+            document.getElementById('sidebar-component').innerHTML = '<!-- 側邊欄組件將在這裡加載 -->';
+            document.getElementById('footer-component').innerHTML = '<!-- 頁腳組件將在這裡加載 -->';
+        });
+    </script>
+</body>
+
+</html>

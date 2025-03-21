@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>患者列表 - 甲狀腺消融治療智慧追蹤平台</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- 引入共用組件 -->
+    <div id="header-component"></div>
+    <div id="sidebar-component"></div>
+
+    <div class="container">
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <div class="section-header">
+                <div class="flex justify-between align-center">
+                    <h1>患者管理</h1>
+                    <div class="flex align-center">
+                        <button class="btn btn-primary">
+                            <i class="icon-plus"></i> 新增患者
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 搜尋與過濾區域 -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="grid grid-4" style="gap: 16px;">
+                        <div>
+                            <label for="patient-search" class="form-label">搜尋患者</label>
+                            <div class="flex align-center">
+                                <input type="text" id="patient-search" class="form-control" placeholder="姓名、ID、手機號碼...">
+                                <button class="btn btn-icon ml-1">
+                                    <i class="icon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="risk-filter" class="form-label">風險程度</label>
+                            <select id="risk-filter" class="form-control">
+                                <option value="">全部</option>
+                                <option value="high">高風險</option>
+                                <option value="medium">中風險</option>
+                                <option value="low">低風險</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="stage-filter" class="form-label">治療階段</label>
+                            <select id="stage-filter" class="form-control">
+                                <option value="">全部</option>
+                                <option value="pre-op">術前評估</option>
+                                <option value="post-op">術後追蹤</option>
+                                <option value="follow-up">長期追蹤</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="date-filter" class="form-label">手術日期</label>
+                            <input type="date" id="date-filter" class="form-control">
+                        </div>
+                    </div>
+                    <div class="flex justify-between align-center mt-3">
+                        <div class="flex align-center">
+                            <span class="mr-2">顯示:</span>
+                            <select class="form-control form-control-sm" style="width: auto;">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            <span class="ml-2">筆記錄</span>
+                        </div>
+                        <div class="flex align-center">
+                            <button class="btn btn-outline btn-sm mr-2">
+                                <i class="icon-refresh"></i> 重置篩選
+                            </button>
+                            <button class="btn btn-outline btn-sm">
+                                <i class="icon-download"></i> 匯出列表
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 患者統計卡片 -->
+            <div class="grid grid-4 mb-3" style="gap: 16px;">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">85</h3>
+                                <p class="text-muted mb-0">總患者數</p>
+                            </div>
+                            <div class="card-icon card-icon-primary">
+                                <i class="icon-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">12</h3>
+                                <p class="text-muted mb-0">高風險患者</p>
+                            </div>
+                            <div class="card-icon card-icon-danger">
+                                <i class="icon-alert"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">7</h3>
+                                <p class="text-muted mb-0">今日手術</p>
+                            </div>
+                            <div class="card-icon card-icon-success">
+                                <i class="icon-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">23</h3>
+                                <p class="text-muted mb-0">待回診患者</p>
+                            </div>
+                            <div class="card-icon card-icon-warning">
+                                <i class="icon-clock"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 患者列表表格 -->
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="select-all">
+                                    </th>
+                                    <th>患者資訊</th>
+                                    <th>風險評估</th>
+                                    <th>手術日期</th>
+                                    <th>最近症狀</th>
+                                    <th>主治醫師</th>
+                                    <th>下次聯繫</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 高風險患者樣本 -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="patient-select">
+                                    </td>
+                                    <td>
+                                        <div class="flex align-center">
+                                            <div class="avatar mr-2">
+                                                <img src="assets/patient-avatar.png" alt="陳小明">
+                                            </div>
+                                            <div>
+                                                <a href="patient-details.html" class="patient-name">陳小明</a>
+                                                <div class="patient-info">
+                                                    <span>ID: P12345</span>
+                                                    <span>45歲 男</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-danger">高風險</span>
+                                    </td>
+                                    <td>2025/03/15</td>
+                                    <td>
+                                        <div class="symptom-tags">
+                                            <span class="tag tag-danger">嚴重疼痛</span>
+                                            <span class="tag tag-warning">吞嚥困難</span>
+                                            <span class="tag tag-danger">頸部腫脹</span>
+                                        </div>
+                                    </td>
+                                    <td>王大明醫師</td>
+                                    <td>2025/03/22</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon btn-sm" title="查看詳情">
+                                                <i class="icon-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="聯繫患者">
+                                                <i class="icon-message"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="更多操作">
+                                                <i class="icon-more"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- 中風險患者樣本 -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="patient-select">
+                                    </td>
+                                    <td>
+                                        <div class="flex align-center">
+                                            <div class="avatar mr-2">
+                                                <img src="assets/patient-avatar-2.png" alt="林美玲">
+                                            </div>
+                                            <div>
+                                                <a href="patient-details.html" class="patient-name">林美玲</a>
+                                                <div class="patient-info">
+                                                    <span>ID: P12346</span>
+                                                    <span>38歲 女</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-warning">中風險</span>
+                                    </td>
+                                    <td>2025/03/12</td>
+                                    <td>
+                                        <div class="symptom-tags">
+                                            <span class="tag tag-warning">中度疼痛</span>
+                                            <span class="tag tag-info">聲音沙啞</span>
+                                        </div>
+                                    </td>
+                                    <td>張小華醫師</td>
+                                    <td>2025/03/24</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon btn-sm" title="查看詳情">
+                                                <i class="icon-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="聯繫患者">
+                                                <i class="icon-message"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="更多操作">
+                                                <i class="icon-more"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- 低風險患者樣本 -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="patient-select">
+                                    </td>
+                                    <td>
+                                        <div class="flex align-center">
+                                            <div class="avatar mr-2">
+                                                <img src="assets/patient-avatar-3.png" alt="張大年">
+                                            </div>
+                                            <div>
+                                                <a href="patient-details.html" class="patient-name">張大年</a>
+                                                <div class="patient-info">
+                                                    <span>ID: P12347</span>
+                                                    <span>57歲 男</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-success">低風險</span>
+                                    </td>
+                                    <td>2025/03/05</td>
+                                    <td>
+                                        <div class="symptom-tags">
+                                            <span class="tag tag-success">恢復良好</span>
+                                        </div>
+                                    </td>
+                                    <td>王大明醫師</td>
+                                    <td>2025/03/28</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon btn-sm" title="查看詳情">
+                                                <i class="icon-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="聯繫患者">
+                                                <i class="icon-message"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="更多操作">
+                                                <i class="icon-more"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- 其他患者... -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="patient-select">
+                                    </td>
+                                    <td>
+                                        <div class="flex align-center">
+                                            <div class="avatar mr-2">
+                                                <img src="assets/patient-avatar-4.png" alt="王小菲">
+                                            </div>
+                                            <div>
+                                                <a href="patient-details.html" class="patient-name">王小菲</a>
+                                                <div class="patient-info">
+                                                    <span>ID: P12348</span>
+                                                    <span>42歲 女</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-warning">中風險</span>
+                                    </td>
+                                    <td>2025/03/10</td>
+                                    <td>
+                                        <div class="symptom-tags">
+                                            <span class="tag tag-warning">輕微腫脹</span>
+                                            <span class="tag tag-warning">中度疼痛</span>
+                                        </div>
+                                    </td>
+                                    <td>張小華醫師</td>
+                                    <td>2025/03/23</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon btn-sm" title="查看詳情">
+                                                <i class="icon-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="聯繫患者">
+                                                <i class="icon-message"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="更多操作">
+                                                <i class="icon-more"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="patient-select">
+                                    </td>
+                                    <td>
+                                        <div class="flex align-center">
+                                            <div class="avatar mr-2">
+                                                <img src="assets/patient-avatar-5.png" alt="李志明">
+                                            </div>
+                                            <div>
+                                                <a href="patient-details.html" class="patient-name">李志明</a>
+                                                <div class="patient-info">
+                                                    <span>ID: P12349</span>
+                                                    <span>61歲 男</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-danger">高風險</span>
+                                    </td>
+                                    <td>2025/03/18</td>
+                                    <td>
+                                        <div class="symptom-tags">
+                                            <span class="tag tag-danger">發燒</span>
+                                            <span class="tag tag-danger">嚴重疼痛</span>
+                                        </div>
+                                    </td>
+                                    <td>李小明醫師</td>
+                                    <td>2025/03/21</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon btn-sm" title="查看詳情">
+                                                <i class="icon-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="聯繫患者">
+                                                <i class="icon-message"></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-sm" title="更多操作">
+                                                <i class="icon-more"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- 分頁 -->
+                <div class="card-footer">
+                    <div class="flex justify-between align-center">
+                        <div>
+                            顯示 1 至 5 筆，共 85 筆記錄
+                        </div>
+                        <div class="pagination">
+                            <button class="btn btn-icon btn-sm" disabled>
+                                <i class="icon-chevron-left"></i>
+                            </button>
+                            <button class="btn btn-sm active">1</button>
+                            <button class="btn btn-sm">2</button>
+                            <button class="btn btn-sm">3</button>
+                            <button class="btn btn-sm">4</button>
+                            <button class="btn btn-sm">5</button>
+                            <button class="btn btn-icon btn-sm">
+                                <i class="icon-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 頁腳 -->
+    <div id="footer-component"></div>
+
+    <!-- 腳本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 載入共用組件
+            fetch('components.html')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+
+                    document.getElementById('header-component').innerHTML = doc.getElementById('header-template').outerHTML;
+                    document.getElementById('sidebar-component').innerHTML = doc.getElementById('sidebar-template').outerHTML;
+                    document.getElementById('footer-component').innerHTML = doc.getElementById('footer-template').outerHTML;
+                });
+        });
+    </script>
+</body>
+
+</html>

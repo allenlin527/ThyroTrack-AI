@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>共用組件 - 甲狀腺消融治療智慧追蹤平台</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- 頭部組件 -->
+    <header class="header" id="header-template">
+        <div class="logo">
+            <img src="assets/logo.png" alt="Logo">
+            <span>甲狀腺消融治療智慧追蹤平台</span>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="active">儀表板</a></li>
+                <li><a href="patients.html">患者管理</a></li>
+                <li><a href="alerts.html">警示管理</a></li>
+                <li><a href="ai-assistant.html">AI輔助</a></li>
+                <li><a href="teleconsultation.html">遠距諮詢</a></li>
+                <li><a href="analytics.html">數據分析</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <div class="notification-icon">
+                <span>🔔</span>
+                <span class="badge">3</span>
+            </div>
+            <div class="user-profile">
+                <img src="assets/user-avatar.png" alt="使用者頭像">
+                <span>王大明醫師</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 側邊欄組件 -->
+    <aside class="sidebar" id="sidebar-template">
+        <div class="user-info">
+            <img src="assets/user-avatar.png" alt="使用者頭像">
+            <h3>王大明醫師</h3>
+            <p>甲狀腺外科 / 主治醫師</p>
+        </div>
+
+        <nav class="side-nav">
+            <h4>快速導航</h4>
+            <ul>
+                <li><a href="index.html" class="active"><span class="icon">📊</span> 儀表板</a></li>
+                <li><a href="patients.html"><span class="icon">👥</span> 患者清單</a></li>
+                <li><a href="alerts.html"><span class="icon">🚨</span> 警示管理</a></li>
+                <li><a href="ai-assistant.html"><span class="icon">🤖</span> AI輔助決策</a></li>
+                <li><a href="teleconsultation.html"><span class="icon">📱</span> 遠距諮詢</a></li>
+                <li><a href="analytics.html"><span class="icon">📈</span> 數據分析</a></li>
+                <li><a href="settings.html"><span class="icon">⚙️</span> 系統設定</a></li>
+                <li><a href="help-center.html"><span class="icon">❓</span> 操作教學</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- 頁腳組件 -->
+    <footer class="footer" id="footer-template">
+        <div class="footer-content">
+            <p>© 2025 甲狀腺消融治療智慧追蹤平台 | 版本 1.2.0 | <a href="#">使用條款</a> | <a href="#">隱私政策</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript 程式碼用於載入組件 -->
+    <script>
+        function loadComponent(elementId, componentHtml) {
+            document.getElementById(elementId).innerHTML = componentHtml;
+        }
+    </script>
+</body>
+
+</html>

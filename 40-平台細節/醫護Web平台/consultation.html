@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>諮詢預約 - 甲狀腺消融治療智慧追蹤平台</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- 引入共用組件 -->
+    <div id="header-component"></div>
+    <div id="sidebar-component"></div>
+
+    <div class="container">
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <div class="section-header">
+                <div class="flex justify-between align-center">
+                    <h1>諮詢管理</h1>
+                    <div class="flex align-center">
+                        <button class="btn btn-outline mr-2">匯出列表</button>
+                        <button class="btn btn-primary">
+                            <i class="icon-plus"></i> 新增預約
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 摘要卡片 -->
+            <div class="grid grid-4 mb-3" style="gap: 16px;">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">8</h3>
+                                <p class="text-muted mb-0">今日預約</p>
+                            </div>
+                            <div class="card-icon card-icon-primary">
+                                <i class="icon-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">3</h3>
+                                <p class="text-muted mb-0">待確認預約</p>
+                            </div>
+                            <div class="card-icon card-icon-warning">
+                                <i class="icon-time"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">12</h3>
+                                <p class="text-muted mb-0">本週預約</p>
+                            </div>
+                            <div class="card-icon card-icon-success">
+                                <i class="icon-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex align-center justify-between">
+                            <div>
+                                <h3 class="mb-0">5</h3>
+                                <p class="text-muted mb-0">高優先級患者</p>
+                            </div>
+                            <div class="card-icon card-icon-danger">
+                                <i class="icon-alert"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 日曆與預約列表 -->
+            <div class="grid grid-2" style="gap: 16px;">
+                <!-- 日曆視圖 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex justify-between align-center">
+                            <h3 class="mb-0">預約日曆</h3>
+                            <div class="flex align-center">
+                                <button class="btn btn-outline btn-sm mr-2">今天</button>
+                                <div class="btn-group">
+                                    <button class="btn btn-outline btn-sm">
+                                        <i class="icon-chevron-left"></i>
+                                    </button>
+                                    <button class="btn btn-outline btn-sm">
+                                        <i class="icon-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="month-header">
+                            <h4 class="mb-3 text-center">2025年3月</h4>
+                        </div>
+                        <!-- 簡化版日曆 -->
+                        <div class="calendar">
+                            <!-- 星期標題 -->
+                            <div class="calendar-header">
+                                <div class="calendar-cell">日</div>
+                                <div class="calendar-cell">一</div>
+                                <div class="calendar-cell">二</div>
+                                <div class="calendar-cell">三</div>
+                                <div class="calendar-cell">四</div>
+                                <div class="calendar-cell">五</div>
+                                <div class="calendar-cell">六</div>
+                            </div>
+                            <!-- 第一週 -->
+                            <div class="calendar-row">
+                                <div class="calendar-cell calendar-inactive">23</div>
+                                <div class="calendar-cell calendar-inactive">24</div>
+                                <div class="calendar-cell calendar-inactive">25</div>
+                                <div class="calendar-cell calendar-inactive">26</div>
+                                <div class="calendar-cell calendar-inactive">27</div>
+                                <div class="calendar-cell calendar-inactive">28</div>
+                                <div class="calendar-cell">1</div>
+                            </div>
+                            <!-- 第二週 -->
+                            <div class="calendar-row">
+                                <div class="calendar-cell">2</div>
+                                <div class="calendar-cell">3</div>
+                                <div class="calendar-cell">4</div>
+                                <div class="calendar-cell">5</div>
+                                <div class="calendar-cell">6</div>
+                                <div class="calendar-cell">7</div>
+                                <div class="calendar-cell">8</div>
+                            </div>
+                            <!-- 第三週 -->
+                            <div class="calendar-row">
+                                <div class="calendar-cell">9</div>
+                                <div class="calendar-cell">10</div>
+                                <div class="calendar-cell">11</div>
+                                <div class="calendar-cell">12</div>
+                                <div class="calendar-cell">13</div>
+                                <div class="calendar-cell">14</div>
+                                <div class="calendar-cell">15</div>
+                            </div>
+                            <!-- 第四週 -->
+                            <div class="calendar-row">
+                                <div class="calendar-cell">16</div>
+                                <div class="calendar-cell">17</div>
+                                <div class="calendar-cell">18</div>
+                                <div class="calendar-cell">19</div>
+                                <div class="calendar-cell">20</div>
+                                <div class="calendar-cell calendar-today">
+                                    21
+                                    <div class="calendar-events">
+                                        <span class="calendar-event calendar-event-primary"></span>
+                                        <span class="calendar-event calendar-event-danger"></span>
+                                        <span class="calendar-event calendar-event-success"></span>
+                                    </div>
+                                </div>
+                                <div class="calendar-cell">
+                                    22
+                                    <div class="calendar-events">
+                                        <span class="calendar-event calendar-event-warning"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 第五週 -->
+                            <div class="calendar-row">
+                                <div class="calendar-cell">
+                                    23
+                                    <div class="calendar-events">
+                                        <span class="calendar-event calendar-event-primary"></span>
+                                    </div>
+                                </div>
+                                <div class="calendar-cell">24</div>
+                                <div class="calendar-cell">
+                                    25
+                                    <div class="calendar-events">
+                                        <span class="calendar-event calendar-event-success"></span>
+                                        <span class="calendar-event calendar-event-primary"></span>
+                                    </div>
+                                </div>
+                                <div class="calendar-cell">26</div>
+                                <div class="calendar-cell">
+                                    27
+                                    <div class="calendar-events">
+                                        <span class="calendar-event calendar-event-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="calendar-cell">28</div>
+                                <div class="calendar-cell">29</div>
+                            </div>
+                            <!-- 第六週 -->
+                            <div class="calendar-row">
+                                <div class="calendar-cell">30</div>
+                                <div class="calendar-cell">31</div>
+                                <div class="calendar-cell calendar-inactive">1</div>
+                                <div class="calendar-cell calendar-inactive">2</div>
+                                <div class="calendar-cell calendar-inactive">3</div>
+                                <div class="calendar-cell calendar-inactive">4</div>
+                                <div class="calendar-cell calendar-inactive">5</div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-around mt-3">
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #4285F4; border-radius: 50%; margin-right: 4px;"></span>
+                                <span>一般回診</span>
+                            </div>
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #EA4335; border-radius: 50%; margin-right: 4px;"></span>
+                                <span>緊急諮詢</span>
+                            </div>
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #34A853; border-radius: 50%; margin-right: 4px;"></span>
+                                <span>遠距檢查</span>
+                            </div>
+                            <div class="flex align-center">
+                                <span
+                                    style="display: inline-block; width: 12px; height: 12px; background-color: #FBBC05; border-radius: 50%; margin-right: 4px;"></span>
+                                <span>待確認</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 今日預約列表 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex justify-between align-center">
+                            <h3 class="mb-0">今日預約 (2025/03/21)</h3>
+                            <div class="dropdown">
+                                <button class="btn btn-outline btn-sm">
+                                    檢視方式 <i class="icon-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="schedule-timeline">
+                            <!-- 早上時段 -->
+                            <div class="schedule-section">
+                                <div class="schedule-time">
+                                    <div class="schedule-time-label">上午</div>
+                                </div>
+
+                                <!-- 09:00-09:30 的預約 -->
+                                <div class="schedule-item">
+                                    <div class="schedule-item-time">09:00 - 09:30</div>
+                                    <div class="schedule-item-content schedule-item-primary">
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <div class="schedule-item-title">術後回診</div>
+                                                <div class="schedule-item-patient">
+                                                    <a href="patient-details.html">陳小明 (ID: P12345)</a>
+                                                </div>
+                                            </div>
+                                            <div class="schedule-item-status">
+                                                <span class="badge badge-success">已報到</span>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-item-info">
+                                            <div><strong>主診：</strong>王大明醫師</div>
+                                            <div><strong>備註：</strong>射頻消融術後第6天回診，需評估傷口恢復情況</div>
+                                        </div>
+                                        <div class="flex justify-end mt-2">
+                                            <button class="btn btn-outline btn-sm mr-2">查看記錄</button>
+                                            <button class="btn btn-primary btn-sm">開始診療</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 10:00-10:30 的預約 -->
+                                <div class="schedule-item">
+                                    <div class="schedule-item-time">10:00 - 10:30</div>
+                                    <div class="schedule-item-content schedule-item-danger">
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <div class="schedule-item-title">緊急諮詢</div>
+                                                <div class="schedule-item-patient">
+                                                    <a href="patient-details.html">李志明 (ID: P12349)</a>
+                                                </div>
+                                            </div>
+                                            <div class="schedule-item-status">
+                                                <span class="badge badge-warning">等候中</span>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-item-info">
+                                            <div><strong>主診：</strong>李小明醫師</div>
+                                            <div><strong>備註：</strong>患者報告發燒及嚴重疼痛，懷疑術後感染</div>
+                                        </div>
+                                        <div class="flex justify-end mt-2">
+                                            <button class="btn btn-outline btn-sm mr-2">調整時間</button>
+                                            <button class="btn btn-primary btn-sm">接診</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 11:30-12:00 的預約 -->
+                                <div class="schedule-item">
+                                    <div class="schedule-item-time">11:30 - 12:00</div>
+                                    <div class="schedule-item-content schedule-item-success">
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <div class="schedule-item-title">遠距檢查</div>
+                                                <div class="schedule-item-patient">
+                                                    <a href="patient-details.html">張大年 (ID: P12347)</a>
+                                                </div>
+                                            </div>
+                                            <div class="schedule-item-status">
+                                                <span class="badge badge-secondary">未開始</span>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-item-info">
+                                            <div><strong>主診：</strong>王大明醫師</div>
+                                            <div><strong>備註：</strong>患者恢復良好，例行視訊檢查</div>
+                                        </div>
+                                        <div class="flex justify-end mt-2">
+                                            <button class="btn btn-outline btn-sm mr-2">發送提醒</button>
+                                            <button class="btn btn-primary btn-sm">發起視訊</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 下午時段 -->
+                            <div class="schedule-section">
+                                <div class="schedule-time">
+                                    <div class="schedule-time-label">下午</div>
+                                </div>
+
+                                <!-- 14:00-14:30 的預約 -->
+                                <div class="schedule-item">
+                                    <div class="schedule-item-time">14:00 - 14:30</div>
+                                    <div class="schedule-item-content schedule-item-primary">
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <div class="schedule-item-title">術前評估</div>
+                                                <div class="schedule-item-patient">
+                                                    <a href="patient-details.html">黃小琳 (ID: P12350)</a>
+                                                </div>
+                                            </div>
+                                            <div class="schedule-item-status">
+                                                <span class="badge badge-secondary">未開始</span>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-item-info">
+                                            <div><strong>主診：</strong>張小華醫師</div>
+                                            <div><strong>備註：</strong>進行射頻消融術前最終評估，確認手術計畫</div>
+                                        </div>
+                                        <div class="flex justify-end mt-2">
+                                            <button class="btn btn-outline btn-sm mr-2">確認資料</button>
+                                            <button class="btn btn-primary btn-sm">開始評估</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 15:30-16:00 的預約 -->
+                                <div class="schedule-item">
+                                    <div class="schedule-item-time">15:30 - 16:00</div>
+                                    <div class="schedule-item-content schedule-item-primary">
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <div class="schedule-item-title">一般回診</div>
+                                                <div class="schedule-item-patient">
+                                                    <a href="patient-details.html">林美玲 (ID: P12346)</a>
+                                                </div>
+                                            </div>
+                                            <div class="schedule-item-status">
+                                                <span class="badge badge-secondary">未開始</span>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-item-info">
+                                            <div><strong>主診：</strong>張小華醫師</div>
+                                            <div><strong>備註：</strong>術後9天檢查，評估聲音沙啞症狀</div>
+                                        </div>
+                                        <div class="flex justify-end mt-2">
+                                            <button class="btn btn-outline btn-sm mr-2">病歷摘要</button>
+                                            <button class="btn btn-primary btn-sm">準備接診</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 待確認預約 -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h3 class="mb-0">待確認預約請求</h3>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>患者資訊</th>
+                                <th>請求類型</th>
+                                <th>偏好日期</th>
+                                <th>偏好時段</th>
+                                <th>請求原因</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="flex align-center">
+                                        <div class="avatar mr-2">
+                                            <img src="assets/patient-avatar-6.png" alt="吳小安">
+                                        </div>
+                                        <div>
+                                            <a href="patient-details.html" class="patient-name">吳小安</a>
+                                            <div class="patient-info">
+                                                <span>ID: P12351</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-warning">遠距諮詢</span></td>
+                                <td>2025/03/22</td>
+                                <td>上午</td>
+                                <td>術後傷口有輕微紅腫，想諮詢是否需要處理</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-success btn-sm mr-1">確認</button>
+                                        <button class="btn btn-outline btn-sm mr-1">調整</button>
+                                        <button class="btn btn-danger btn-sm">拒絕</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex align-center">
+                                        <div class="avatar mr-2">
+                                            <img src="assets/patient-avatar-7.png" alt="趙小雲">
+                                        </div>
+                                        <div>
+                                            <a href="patient-details.html" class="patient-name">趙小雲</a>
+                                            <div class="patient-info">
+                                                <span>ID: P12352</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-primary">一般回診</span></td>
+                                <td>2025/03/25</td>
+                                <td>下午</td>
+                                <td>原定3/28回診，但因個人行程調整希望提前</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-success btn-sm mr-1">確認</button>
+                                        <button class="btn btn-outline btn-sm mr-1">調整</button>
+                                        <button class="btn btn-danger btn-sm">拒絕</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex align-center">
+                                        <div class="avatar mr-2">
+                                            <img src="assets/patient-avatar-8.png" alt="許小勇">
+                                        </div>
+                                        <div>
+                                            <a href="patient-details.html" class="patient-name">許小勇</a>
+                                            <div class="patient-info">
+                                                <span>ID: P12353</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-danger">術前諮詢</span></td>
+                                <td>2025/03/23</td>
+                                <td>上午</td>
+                                <td>希望進一步了解手術風險和效果，尚未決定是否接受治療</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-success btn-sm mr-1">確認</button>
+                                        <button class="btn btn-outline btn-sm mr-1">調整</button>
+                                        <button class="btn btn-danger btn-sm">拒絕</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <div class="flex justify-end">
+                        <button class="btn btn-outline mr-2">全部拒絕</button>
+                        <button class="btn btn-primary">全部確認</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 頁腳 -->
+    <div id="footer-component"></div>
+
+    <!-- 腳本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 載入共用組件
+            fetch('components.html')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+
+                    document.getElementById('header-component').innerHTML = doc.getElementById('header-template').outerHTML;
+                    document.getElementById('sidebar-component').innerHTML = doc.getElementById('sidebar-template').outerHTML;
+                    document.getElementById('footer-component').innerHTML = doc.getElementById('footer-template').outerHTML;
+                });
+        });
+    </script>
+</body>
+
+</html>
