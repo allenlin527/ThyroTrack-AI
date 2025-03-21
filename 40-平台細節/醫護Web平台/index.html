@@ -27,22 +27,26 @@
                     <div style="padding: 20px; text-align: center;">
                         <div style="font-size: 36px; font-weight: bold; color: #EA4335;">8</div>
                         <div>待處理警示</div>
-                        <button class="btn btn-outline btn-sm mt-2">查看警示</button>
+                        <button class="btn btn-outline btn-sm mt-2"
+                            onclick="window.location.href='alerts.html'">查看警示</button>
                     </div>
                     <div style="padding: 20px; text-align: center;">
                         <div style="font-size: 36px; font-weight: bold; color: #4285F4;">12</div>
                         <div>今日追蹤患者</div>
-                        <button class="btn btn-outline btn-sm mt-2">查看患者</button>
+                        <button class="btn btn-outline btn-sm mt-2"
+                            onclick="window.location.href='patients.html'">查看患者</button>
                     </div>
                     <div style="padding: 20px; text-align: center;">
                         <div style="font-size: 36px; font-weight: bold; color: #FBBC05;">4</div>
                         <div>待排遠距諮詢</div>
-                        <button class="btn btn-outline btn-sm mt-2">安排諮詢</button>
+                        <button class="btn btn-outline btn-sm mt-2"
+                            onclick="window.location.href='telemedicine.html'">安排諮詢</button>
                     </div>
                     <div style="padding: 20px; text-align: center;">
                         <div style="font-size: 36px; font-weight: bold; color: #34A853;">3</div>
                         <div>新增患者報告</div>
-                        <button class="btn btn-outline btn-sm mt-2">檢視報告</button>
+                        <button class="btn btn-outline btn-sm mt-2"
+                            onclick="window.location.href='reports.html'">檢視報告</button>
                     </div>
                 </div>
             </div>
@@ -72,8 +76,10 @@
                                     <span>陳小明 (#P12345)</span>
                                 </div>
                                 <div class="flex mt-2">
-                                    <button class="btn btn-primary btn-sm">立即處理</button>
-                                    <button class="btn btn-outline btn-sm ml-2">查看詳情</button>
+                                    <button class="btn btn-primary btn-sm"
+                                        onclick="window.location.href='alerts.html'">立即處理</button>
+                                    <button class="btn btn-outline btn-sm ml-2"
+                                        onclick="window.location.href='patient-details.html'">查看詳情</button>
                                 </div>
                             </div>
                         </div>
@@ -92,8 +98,10 @@
                                     <span>林美玲 (#P23456)</span>
                                 </div>
                                 <div class="flex mt-2">
-                                    <button class="btn btn-primary btn-sm">處理警示</button>
-                                    <button class="btn btn-outline btn-sm ml-2">查看詳情</button>
+                                    <button class="btn btn-primary btn-sm"
+                                        onclick="window.location.href='alerts.html'">處理警示</button>
+                                    <button class="btn btn-outline btn-sm ml-2"
+                                        onclick="window.location.href='patient-details.html'">查看詳情</button>
                                 </div>
                             </div>
                         </div>
@@ -112,8 +120,10 @@
                                     <span>張志明 (#P34567)</span>
                                 </div>
                                 <div class="flex mt-2">
-                                    <button class="btn btn-primary btn-sm">處理警示</button>
-                                    <button class="btn btn-outline btn-sm ml-2">查看詳情</button>
+                                    <button class="btn btn-primary btn-sm"
+                                        onclick="window.location.href='alerts.html'">處理警示</button>
+                                    <button class="btn btn-outline btn-sm ml-2"
+                                        onclick="window.location.href='patient-details.html'">查看詳情</button>
                                 </div>
                             </div>
                         </div>
@@ -221,8 +231,10 @@
                                 <div>吞嚥: <span class="text-warning">6/10</span></div>
                             </td>
                             <td>
-                                <button class="btn btn-primary btn-sm">檢視</button>
-                                <button class="btn btn-outline btn-sm">聯繫</button>
+                                <button class="btn btn-primary btn-sm"
+                                    onclick="window.location.href='patient-details.html'">檢視</button>
+                                <button class="btn btn-outline btn-sm"
+                                    onclick="window.location.href='telemedicine.html'">聯繫</button>
                             </td>
                         </tr>
                         <tr>
@@ -246,8 +258,10 @@
                                 <div>吞嚥: <span class="text-warning">7/10</span></div>
                             </td>
                             <td>
-                                <button class="btn btn-primary btn-sm">檢視</button>
-                                <button class="btn btn-outline btn-sm">聯繫</button>
+                                <button class="btn btn-primary btn-sm"
+                                    onclick="window.location.href='patient-details.html'">檢視</button>
+                                <button class="btn btn-outline btn-sm"
+                                    onclick="window.location.href='telemedicine.html'">聯繫</button>
                             </td>
                         </tr>
                         <tr>
@@ -271,8 +285,10 @@
                                 <div>體溫: <span class="text-danger">38.5°C</span></div>
                             </td>
                             <td>
-                                <button class="btn btn-primary btn-sm">檢視</button>
-                                <button class="btn btn-outline btn-sm">聯繫</button>
+                                <button class="btn btn-primary btn-sm"
+                                    onclick="window.location.href='patient-details.html'">檢視</button>
+                                <button class="btn btn-outline btn-sm"
+                                    onclick="window.location.href='telemedicine.html'">聯繫</button>
                             </td>
                         </tr>
                     </tbody>
@@ -284,7 +300,7 @@
                 <div class="card-header">
                     <div class="flex justify-between align-center">
                         <h3 class="mb-0">今日行程</h3>
-                        <a href="teleconsultation.html" class="link">查看行事曆 →</a>
+                        <a href="telemedicine.html" class="link">查看行事曆 →</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -299,7 +315,8 @@
                                     <span class="badge badge-primary">9:30 - 10:00</span>
                                     <span class="ml-2">遠距諮詢：陳小明</span>
                                 </div>
-                                <button class="btn btn-outline btn-sm">開始諮詢</button>
+                                <button class="btn btn-outline btn-sm"
+                                    onclick="window.location.href='telemedicine.html'">開始諮詢</button>
                             </div>
                         </div>
 
@@ -313,7 +330,8 @@
                                     <span class="badge badge-warning">11:00 - 12:00</span>
                                     <span class="ml-2">治療團隊會議</span>
                                 </div>
-                                <button class="btn btn-outline btn-sm">加入會議</button>
+                                <button class="btn btn-outline btn-sm"
+                                    onclick="window.location.href='telemedicine.html'">加入會議</button>
                             </div>
                         </div>
 
@@ -327,7 +345,8 @@
                                     <span class="badge badge-success">14:30 - 15:00</span>
                                     <span class="ml-2">遠距諮詢：張志明</span>
                                 </div>
-                                <button class="btn btn-outline btn-sm">開始諮詢</button>
+                                <button class="btn btn-outline btn-sm"
+                                    onclick="window.location.href='telemedicine.html'">開始諮詢</button>
                             </div>
                         </div>
 
@@ -341,7 +360,8 @@
                                     <span class="badge badge-danger">16:30 - 17:30</span>
                                     <span class="ml-2">治療成效評估報告撰寫</span>
                                 </div>
-                                <button class="btn btn-outline btn-sm">開始任務</button>
+                                <button class="btn btn-outline btn-sm"
+                                    onclick="window.location.href='reports.html'">開始任務</button>
                             </div>
                         </div>
                     </div>
